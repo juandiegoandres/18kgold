@@ -321,9 +321,13 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
     case 'disenos': {
       const { results } = await env.DB.prepare('SELECT * FROM disenos WHERE folio IS NOT NULL ORDER BY id DESC LIMIT 8').all();
       if (!results.length) return responder('Todavía no han llegado diseños.');
-      return responder('<b>Últimos diseños</b>\n\n' + results.map((d) =>
-        `<b>${d.folio}</b> · ${h(d.cliente)} · ${h(describirGuardado(d))} · ${Number(d.peso_estimado).toLocaleString('es-CO')} g · ${dinero(d.precio_estimado)}\n` +
-        `${fechaCorta(d.creado)}${d.clave_png ? ` · <a href="${origen}/img/${d.clave_png}">vista</a>` : ''}`).join('\n\n'));
+      await responder('<b>Últimos diseños</b> · con el botón te vuelvo a mandar la foto y el STL');
+      for (const d of results) {
+        await responder(
+          `<b>${d.folio}</b> · ${h(d.cliente)} (${h(d.codigo || '')})\n${h(describirGuardado(d))} · ${Number(d.peso_estimado).toLocaleString('es-CO')} g · ${dinero(d.precio_estimado)}\n${fechaCorta(d.creado)}`,
+          [[{ text: `Mandarme foto y STL de ${d.folio}`, callback_data: `d:env:${d.id}` }]]);
+      }
+      return;
     }
 
     case 'pedidos': {
@@ -734,6 +738,19 @@ async function manejarBoton(env, cq, origen) {
       await tg.editMessageText(env, chat, msgId, 'Listo, quité el anuncio de la web.');
     } else if (accion === 'ayuda') await tg.sendMessage(env, chat, TEXTO_AYUDA, botonesAyuda());
     else if (['codigos', 'pedidos', 'disenos'].includes(accion)) await ejecutarComando(env, chat, accion, '', [], origen);
+  } else if (grupo === 'd') {
+    // Reenvía la vista y el STL de un diseño guardado (p. ej. uno que llegó antes de que el chat fuera admin).
+    const d = await env.DB.prepare('SELECT * FROM disenos WHERE id = ?').bind(id).first();
+    const leer = async (clave) => (clave ? (await env.ARCHIVOS.get(clave))?.arrayBuffer() : null);
+    const [png, stl] = d ? await Promise.all([leer(d.clave_png), leer(d.clave_stl)]) : [];
+    if (!d || !stl) aviso = 'No encontré el archivo de ese diseño.';
+    else {
+      const pie = `<b>${d.folio}</b> · ${h(d.cliente)} (${h(d.codigo || '')})\n${h(describirGuardado(d))}\nPrecio estimado: <b>${dinero(d.precio_estimado)}</b>` +
+        (d.nota ? `\nNota del cliente: ${h(d.nota)}` : '');
+      if (png) await tg.sendPhoto(env, chat, new Uint8Array(png), pie, null, `${d.folio}.png`);
+      await tg.sendDocument(env, chat, new Uint8Array(stl), `${d.folio}.stl`, 'model/stl', png ? '' : pie);
+      aviso = 'Enviado.';
+    }
   } else if (grupo === 'a') {
     const tema = AYUDA_TEMAS[accion];
     if (tema) await tg.sendMessage(env, chat, tema[1], [[{ text: 'Otros temas', callback_data: 'a:_' }, { text: 'Menú', callback_data: 'm:menu' }]]);

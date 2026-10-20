@@ -75,7 +75,8 @@ Comandos (en español, con menú `setMyCommands`):
   aviso del diseño.
 - `/codigos` — vigentes, cuántos diseños lleva cada uno y su nota. `/anular KP-XXXXX`.
 - `/tejido <valor>` — mano de obra del tejido en nylon (ajuste `tejido_valor`, por defecto 25000).
-- `/disenos` — últimos diseños recibidos; `/pedidos` — últimos pedidos.
+- `/disenos` — últimos diseños recibidos, cada uno con botón para volver a mandar la vista y el STL
+  (sirve para un admin nuevo o si se perdió el mensaje); `/pedidos` — últimos pedidos.
 - `/anuncio <texto>` (vacío = quitar) — franja de anuncio de la web.
 - `/ayuda`.
 - Notificaciones entrantes: diseño nuevo (foto de la vista + STL como documento + resumen
