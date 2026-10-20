@@ -32,10 +32,11 @@ export const COMANDOS = [
   ['tejido', 'Ver o cambiar el valor del tejido en nylon'],
   ['anuncio', 'Franja de anuncio de la web'],
   ['cancelar', 'Cancelar lo que estaba haciendo'],
-  ['ayuda', 'Qué sé hacer'],
+  ['ayuda', 'Aprender a usar el bot, tema por tema'],
+  ['comandos', 'Lista corta de comandos'],
 ];
 
-const AYUDA = `<b>Hola, Carlos.</b> Lo más fácil es /menu. Esto es todo lo que sé hacer:
+const AYUDA = `<b>Comandos</b> · Lo más fácil es /menu; para aprender paso a paso, /ayuda.
 
 <b>Precios</b>
 /oro — ver precios del gramo
@@ -58,6 +59,110 @@ Mándame una foto (o un álbum) de una joya con un texto, p. ej. «Cadena lazo i
 /anuncio Envíos gratis este fin de semana (vacío = quitar)
 
 /cancelar — si me quedé esperando un dato que ya no quieres darme`;
+
+// /ayuda: un tema por botón, explicado paso a paso para aprender usando el bot.
+const AYUDA_TEMAS = {
+  oro: ['Precio del oro', `<b>Cambiar el precio del oro</b>
+
+El precio de cada joya se calcula solo: <i>peso × precio del gramo</i>. Si cambias el gramo, cambia toda la página.
+
+<b>Paso a paso</b>
+1. /menu → <b>Precio del oro</b>
+2. Toca <b>Cambiar nacional</b> o <b>Cambiar italiano</b>
+3. Escribe el precio del gramo en pesos, p. ej. <code>455000</code>
+4. Te muestro cuánto sube o baja y cuántas joyas cambian. Toca <b>Sí, cambiar</b>
+
+<b>Atajo:</b> <code>/oro nacional 455000</code> · <code>/oro italiano 560000</code>
+<b>Ver precios:</b> /oro
+
+También: <code>/hechura 60000</code> (hechura por gramo de los diseños) y <code>/tejido 25000</code> (tejido en nylon).`],
+  subir: ['Subir una joya', `<b>Subir una joya nueva</b>
+
+1. Toma la foto (o varias: se mandan juntas como álbum)
+2. Mándamela con un texto escrito en la foto, así:
+<code>Cadena lazo italiano 4,2 g 50 cm</code>
+3. Del texto saco:
+   • <b>nombre</b>: lo primero que escribas
+   • <b>peso</b>: «4,2 g», «4.2gr» o «4,2 gramos»
+   • <b>oro</b>: si dice «italiano»; si no, nacional
+   • <b>categoría</b>: cadena, pulsera, aretes, anillo, dije, conjunto…
+   • <b>medidas</b>: «50 cm», «12 mm»
+4. Te muestro el borrador con el precio de hoy. Si falta algo, usa los botones <b>Cambiar peso / categoría / nombre</b>
+5. Toca <b>Publicar</b> y ya sale en la página.
+
+Las líneas que escribas después de la primera quedan como descripción.`],
+  editar: ['Editar una joya', `<b>Buscar y editar una joya</b>
+
+1. /menu → <b>Buscar y editar joya</b> y escribe una palabra (<code>rolo</code>, <code>topos</code>) o el código (<code>KP-012</code>)
+   Atajo: <code>/productos rolo</code>
+2. Debajo de cada joya tienes botones:
+   • <b>Ocultar / Mostrar</b>: la quita de la página sin borrarla (por ejemplo si se vendió)
+   • <b>Destacar</b>: sale primero en la página
+   • <b>Peso</b>: el precio se recalcula con el oro del día
+   • <b>Precio</b>: precio fijo por pieza (deja de seguir el oro)
+   • <b>Borrar</b>: te pide confirmar
+   • <b>Editar</b>: nombre, descripción, categoría, oro nacional/italiano, medidas, descuento y fotos
+
+<b>Descuento:</b> escribe <code>10%</code>, un valor en pesos como <code>20000</code>, o <code>0</code> para quitarlo.
+<b>Fotos:</b> te mando el álbum numerado y eliges <b>Agregar</b>, <b>Reemplazar todas</b> (la primera nueva es la portada) o <b>Quitar una</b>.`],
+  codigos: ['Códigos para clientes', `<b>Códigos para que el cliente diseñe su joya</b>
+
+Sin código el cliente puede jugar con el diseñador, pero no puede enviarte el diseño.
+
+1. /menu → <b>Crear código</b> y escribe el nombre del cliente, p. ej. <code>Ana Pérez</code>
+   (para más días: <code>Ana Pérez 30</code>; por defecto dura 15 y permite 5 diseños)
+   Atajo: <code>/codigo Ana Pérez</code>
+2. Te doy el código (KP-XXXXX) y el mensaje listo. Toca <b>Compartir por WhatsApp</b> y se lo mandas.
+3. Toca <b>Agregar nota</b> para apuntar qué quiere el cliente («dije con nombre Sofía, presupuesto 1 millón»). Te la recuerdo cuando llegue su diseño.
+
+<b>Ver códigos vigentes:</b> /codigos
+<b>Cancelar uno:</b> <code>/anular KP-XXXXX</code>`],
+  disenos: ['Diseños y archivo STL', `<b>Cuando un cliente te envía su diseño</b>
+
+Te llegan tres cosas aquí:
+1. La <b>foto</b> de cómo se ve puesta
+2. El <b>resumen</b>: tipo de pieza, texto, medidas, peso en oro, montaje (cadena o tejido) y precio estimado
+3. El archivo <b>.stl</b> (D-000123.stl): es la pieza a escala real en milímetros, lista para imprimir en resina y fundir. Reenvíaselo a quien te imprime.
+
+El precio es un <b>estimado</b>: el final lo cuadras con el cliente por WhatsApp.
+La cadena se cotiza aparte; el tejido en nylon sí va incluido.
+
+<b>Ver los últimos:</b> /disenos`],
+  pedidos: ['Pedidos de la tienda', `<b>Pedidos de la tienda</b>
+
+Cuando alguien compra joyas del catálogo en la página:
+1. Te llega aquí el aviso con el folio (P-000123), lo que pidió, el total y un enlace para escribirle por <b>WhatsApp</b>
+2. Al cliente se le abre WhatsApp con el pedido para que te escriba
+3. El pago y el envío los cuadras con él por WhatsApp (la página no cobra)
+
+Los precios del pedido se recalculan con el oro del día, así nadie paga un precio viejo.
+
+<b>Ver los últimos:</b> /pedidos`],
+  web: ['Anuncio de la página', `<b>Franja de anuncio de la página</b>
+
+Es la barra de arriba de la página (ahora: «Envíos a toda Colombia»).
+
+1. /menu → <b>Anuncio de la web</b>
+2. Escribe el texto nuevo, p. ej. <code>Envíos gratis este fin de semana</code>
+3. Para quitarlo, toca <b>Quitar anuncio</b>
+
+Atajo: <code>/anuncio Envíos gratis este fin de semana</code> · <code>/anuncio</code> solo = quitar`],
+  trucos: ['Si me enredo', `<b>Si te enredas</b>
+
+• Cuando te pido un dato (peso, nombre, precio…) espero tu respuesta 30 minutos. Si ya no quieres, escribe /cancelar
+• /menu siempre te devuelve a los botones
+• Los números se pueden escribir como quieras: <code>455000</code>, <code>455.000</code> o <code>$455.000</code>; el peso con coma o punto: <code>3,4</code> o <code>3.4</code>
+• Nada se borra sin preguntarte, y el precio del oro te pide confirmar
+• Si algo no funciona, cuéntale a Juan Diego`],
+};
+
+const botonesAyuda = () => {
+  const claves = Object.keys(AYUDA_TEMAS);
+  const filas = [];
+  for (let i = 0; i < claves.length; i += 2) filas.push(claves.slice(i, i + 2).map((k) => ({ text: AYUDA_TEMAS[k][0], callback_data: `a:${k}` })));
+  return filas;
+};
+const TEXTO_AYUDA = '<b>Ayuda</b> · Toca un tema y te explico paso a paso. Para la lista corta de comandos: /comandos';
 
 const MENU = [
   [{ text: 'Precio del oro', callback_data: 'm:oro' }, { text: 'Subir joya', callback_data: 'm:subir' }],
@@ -121,6 +226,9 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
 
     case 'ayuda':
     case 'help':
+      return responder(TEXTO_AYUDA, botonesAyuda());
+
+    case 'comandos':
       return responder(AYUDA);
 
     case 'cancelar':
@@ -609,7 +717,8 @@ async function manejarBoton(env, cq, origen) {
 
   if (grupo === 'm') {
     await borrarEspera(env, chat);
-    if (accion === 'oro') await tg.sendMessage(env, chat, await textoPrecios(env), botonesOro());
+    if (accion === 'menu') await tg.sendMessage(env, chat, TEXTO_MENU, MENU);
+    else if (accion === 'oro') await tg.sendMessage(env, chat, await textoPrecios(env), botonesOro());
     else if (accion === 'subir') {
       await tg.sendMessage(env, chat, 'Mándame la foto de la joya (o varias como álbum) con un texto como:\n<code>Cadena lazo italiano 4,2 g 50 cm</code>\n\nDel texto saco el nombre, el peso, el oro (si no dices, nacional), la categoría y las medidas. Lo que falte lo completas con botones antes de publicar.');
     } else if (accion === 'buscar') await pedir(env, chat, 'buscar', 0, '¿Qué joya buscas? Escribe una palabra (<code>rolo</code>, <code>topos</code>) o el código (<code>KP-012</code>).');
@@ -623,8 +732,12 @@ async function manejarBoton(env, cq, origen) {
     } else if (accion === 'sinanuncio') {
       await fijarAjuste(env, 'anuncio', '');
       await tg.editMessageText(env, chat, msgId, 'Listo, quité el anuncio de la web.');
-    } else if (accion === 'ayuda') await tg.sendMessage(env, chat, AYUDA);
+    } else if (accion === 'ayuda') await tg.sendMessage(env, chat, TEXTO_AYUDA, botonesAyuda());
     else if (['codigos', 'pedidos', 'disenos'].includes(accion)) await ejecutarComando(env, chat, accion, '', [], origen);
+  } else if (grupo === 'a') {
+    const tema = AYUDA_TEMAS[accion];
+    if (tema) await tg.sendMessage(env, chat, tema[1], [[{ text: 'Otros temas', callback_data: 'a:_' }, { text: 'Menú', callback_data: 'm:menu' }]]);
+    else await tg.sendMessage(env, chat, TEXTO_AYUDA, botonesAyuda());
   } else if (grupo === 'o') {
     if (accion === 'pide') {
       await pedir(env, chat, 'oro', 0, `¿Nuevo precio del gramo <b>${idTxt}</b>? En pesos, p. ej. <code>455000</code>`, { tipo: idTxt });
