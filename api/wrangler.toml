@@ -1,0 +1,31 @@
+# 18gold KPrada — Worker de la API (catálogo, diseños, pedidos, bot de Telegram)
+name = "18gold-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Base de datos D1.
+# Crear la remota (una vez):  npx wrangler d1 create 18gold
+# y pegar aquí el database_id que imprime. En local (wrangler dev) el id da igual.
+[[d1_databases]]
+binding = "DB"
+database_name = "18gold"
+database_id = "ba518487-d1bd-4b6a-aafd-cbabf22e243b"
+# Migraciones incrementales (después de esquema.sql): npx wrangler d1 migrations apply 18gold --local|--remote
+migrations_dir = "migraciones"
+
+# Bucket R2 para fotos de productos, vistas PNG y STL de diseños.
+# Crear (una vez):  npx wrangler r2 bucket create 18gold-archivos
+[[r2_buckets]]
+binding = "ARCHIVOS"
+bucket_name = "18gold-archivos"
+
+[vars]
+# Orígenes permitidos para CORS (coma-separados). Agregar el dominio de GitHub Pages al desplegar.
+ORIGENES = "https://juandiegoandres.github.io,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+# URL pública del front (para los enlaces del bot: /disena/?c=KP-XXXXX)
+SITIO_URL = "https://juandiegoandres.github.io/18kgold"
+
+# Secretos (NO van aquí): npx wrangler secret put <NOMBRE>
+#   TELEGRAM_TOKEN, TELEGRAM_SECRETO, TELEGRAM_RUTA_SECRETA, TELEGRAM_ADMINS
+# El Worker NO usa IA (ARQUITECTURA §4): no hay llaves de OpenRouter aquí.
+# En local van en api/.dev.vars (ver .dev.vars.ejemplo).

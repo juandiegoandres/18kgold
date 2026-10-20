@@ -1,0 +1,165 @@
+/* Base de la tienda: reset, tipografía, botones, campos y utilidades.
+   Sistema visual (ARQUITECTURA §6): sin degradados, 2px de radio, líneas de 1px, mucho aire. */
+@import './tokens.css';
+
+:root {
+  /* Variables propias de la tienda (tokens.css no se toca) */
+  --gris-claro: #8d8577;
+  --linea-oscura: rgba(244, 240, 230, 0.14);
+  --texto-oscuro: #e9e3d6;
+  --exito: #3f6b45;
+  --error: #9a3b2b;
+  --alto-cabecera: 72px;
+  --foco: 2px solid var(--oro);
+  --t-xs: 0.6875rem;  /* 11px rótulos */
+  --t-s: 0.8125rem;   /* 13px */
+  --t-m: 0.9375rem;   /* 15px cuerpo */
+  --t-l: 1.0625rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--hueso);
+  color: var(--tinta);
+  font-family: var(--ui);
+  font-size: var(--t-m);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: lining-nums; /* Cormorant trae cifras antiguas: en precios se ven desalineadas */
+  overflow-x: clip;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; display: block; }
+
+img, svg, canvas, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 500; line-height: 1.05; letter-spacing: -0.01em; color: var(--negro); }
+strong, b { font-weight: 500; }
+::selection { background: var(--negro); color: var(--hueso); }
+
+:focus-visible { outline: var(--foco); outline-offset: 3px; border-radius: var(--r); }
+
+.solo-lectores {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.saltar {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--negro); color: var(--hueso); padding: 10px 16px; border-radius: var(--r);
+}
+.saltar:focus { top: 12px; }
+
+.contenedor {
+  width: 100%;
+  max-width: calc(var(--ancho) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Tipografía ---------- */
+.rotulo {
+  font-family: var(--ui);
+  font-size: var(--t-xs);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+.rotulo-oro { color: var(--oro); }
+.serif { font-family: var(--display); }
+.tenue { color: var(--gris); }
+.oro { color: var(--oro); }
+.titulo-xl { font-size: clamp(2.75rem, 7.4vw, 6.75rem); line-height: 0.95; }
+.titulo-l { font-size: clamp(2.1rem, 4.6vw, 3.9rem); line-height: 1; }
+.titulo-m { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.08; }
+.titulo-xl em, .titulo-l em, .titulo-m em { font-style: italic; color: var(--oro); }
+.parrafo { max-width: 56ch; color: var(--tinta); }
+.parrafo + .parrafo { margin-top: 1em; }
+
+/* ---------- Botones ---------- */
+.boton {
+  --fondo: var(--negro);
+  --texto: var(--hueso);
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 52px; padding: 0 26px;
+  background: var(--fondo); color: var(--texto);
+  border: 1px solid var(--negro); border-radius: var(--r);
+  font-size: var(--t-s); font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+  white-space: nowrap;
+}
+.boton .ico { transition: transform .45s var(--ease); flex: none; }
+.boton:hover { --fondo: var(--oro); border-color: var(--oro); }
+.boton:hover .ico-flecha { transform: translateX(4px); }
+.boton-linea { --fondo: transparent; --texto: var(--negro); }
+.boton-linea:hover { --fondo: var(--negro); --texto: var(--hueso); border-color: var(--negro); }
+.boton-claro { --fondo: var(--hueso); --texto: var(--negro); border-color: var(--hueso); }
+.boton-claro:hover { --fondo: var(--oro-claro); border-color: var(--oro-claro); --texto: var(--negro); }
+.boton-bloque { width: 100%; }
+.boton[disabled] { opacity: .45; pointer-events: none; }
+
+.enlace-linea {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: var(--t-s); letter-spacing: 0.14em; text-transform: uppercase;
+  padding-block: 6px;
+  transition: color .3s;
+}
+.enlace-linea::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: currentColor; transform-origin: right center;
+  transition: transform .5s var(--ease);
+}
+.enlace-linea:hover { color: var(--oro); }
+.enlace-linea:hover::after { transform: scaleX(0); }
+
+/* ---------- Campos ---------- */
+.campo { display: grid; gap: 8px; }
+.campo label, .campo .etiqueta-campo { font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris); }
+.entrada {
+  width: 100%; min-height: 50px; padding: 12px 14px;
+  background: transparent; border: 1px solid var(--linea); border-radius: var(--r);
+  font-size: 1rem; font-weight: 300; color: var(--negro);
+  transition: border-color .25s;
+  appearance: none;
+}
+.entrada:hover { border-color: var(--gris-claro); }
+.entrada:focus { outline: none; border-color: var(--negro); }
+.entrada:focus-visible { outline: var(--foco); outline-offset: 1px; }
+select.entrada {
+  padding-right: 40px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23100f0d' stroke-width='1.3'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+textarea.entrada { min-height: 96px; resize: vertical; }
+.entrada[aria-invalid="true"] { border-color: var(--error); }
+.error-campo { font-size: var(--t-s); color: var(--error); }
+
+/* ---------- Líneas y utilidades ---------- */
+.linea { height: 1px; background: var(--linea); border: 0; transform-origin: left center; }
+.linea-oscura { background: var(--linea-oscura); }
+.ico { flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Texto que sobra en pantallas angostas («Oro italiano ley 750» → «italiano 750») */
+@media (max-width: 520px) { .solo-ancho { display: none; } }

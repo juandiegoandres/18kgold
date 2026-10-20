@@ -1,0 +1,54 @@
+/* Bolsa / carrito */
+.bolsa-cabeza { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(28px, 4vw, 48px); display: grid; gap: 16px; }
+.bolsa-cabeza .titulo-l { max-width: 18ch; }
+.bolsa-cabeza p.tenue { max-width: 56ch; }
+.bolsa { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+
+.lineas { border-top: 1px solid var(--negro); }
+.linea-bolsa { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--linea); align-items: start; }
+.linea-foto { width: 88px; }
+.linea-info { display: grid; gap: 4px; min-width: 0; }
+.linea-nombre { font-family: var(--display); font-size: 1.35rem; line-height: 1.15; color: var(--negro); }
+.linea-nombre:hover { color: var(--oro); }
+.linea-unidad { font-size: var(--t-s); }
+.linea-controles { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 10px; }
+.linea-total { font-weight: 500; color: var(--negro); white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
+.linea-quitar { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--gris); }
+.linea-quitar:hover { color: var(--error); }
+.cantidad { display: inline-grid; grid-template-columns: 44px 36px 44px; align-items: center; border: 1px solid var(--linea); border-radius: var(--r); }
+.cantidad button { height: 44px; font-size: 1.15rem; color: var(--negro); }
+.cantidad button:hover { color: var(--oro); }
+.cantidad output { text-align: center; font-variant-numeric: lining-nums tabular-nums; }
+
+.resumen { display: grid; margin-top: 8px; }
+.resumen div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--linea); }
+.resumen dt { font-size: var(--t-xs); letter-spacing: .18em; text-transform: uppercase; color: var(--gris); }
+.resumen dd { margin: 0; font-variant-numeric: lining-nums tabular-nums; }
+.resumen .resumen-total { border-bottom: 1px solid var(--negro); padding-block: 18px; }
+.resumen .resumen-total dd { font-family: var(--display); font-size: 2rem; font-weight: 600; color: var(--oro); line-height: 1; }
+.envio-nota { font-size: var(--t-s); margin-top: 12px; min-height: 1.4em; }
+
+.pedido { display: grid; gap: 18px; padding: clamp(24px, 3vw, 40px); background: var(--hueso-2); border-radius: var(--r); }
+.pedido .entrada { background: var(--hueso); }
+.pedido-intro { margin-top: -8px; font-size: var(--t-s); }
+.pedido-legal { font-size: var(--t-s); }
+.error-campo[hidden] { display: none; }
+
+.bolsa-vacia { display: grid; gap: 24px; padding-top: 28px; border-top: 1px solid var(--negro); }
+.bolsa-vacia-acciones, .confirmacion-acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+.confirmacion { display: grid; gap: 28px; border-top: 1px solid var(--negro); padding-top: 28px; max-width: 760px; }
+.confirmacion-pasos { display: grid; border-top: 1px solid var(--linea); }
+.confirmacion-pasos li { display: grid; grid-template-columns: 48px 1fr; padding: 14px 0; border-bottom: 1px solid var(--linea); }
+.confirmacion-pasos .rotulo { color: var(--oro); padding-top: 3px; }
+.confirmacion-nota { font-size: var(--t-s); }
+
+@media (max-width: 900px) { .bolsa { grid-template-columns: minmax(0, 1fr); } }
+/* En la bolsa el flotante taparía «Confirmar» / «Abrir WhatsApp» en móvil: ya hay botón propio */
+@media (max-width: 900px) { body[data-pagina="carrito"] .wa-flotante { display: none; } }
+@media (max-width: 520px) {
+  .linea-bolsa { grid-template-columns: 72px minmax(0, 1fr); gap: 14px; }
+  .linea-foto { width: 72px; }
+  .linea-total { grid-column: 2; }
+  .linea-nombre { font-size: 1.2rem; }
+  .bolsa-vacia-acciones .boton, .confirmacion-acciones .boton { flex: 1 1 100%; }
+}

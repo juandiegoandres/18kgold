@@ -1,0 +1,14 @@
+{
+  "name": "18gold-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test pruebas/*.test.mjs",
+    "migrar:local": "wrangler d1 migrations apply 18gold --local"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.1"
+  }
+}

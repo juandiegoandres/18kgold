@@ -1,0 +1,17 @@
+/* Tokens compartidos — sistema visual heredado (ver ARQUITECTURA.md §6). Sin degradados. */
+:root {
+  --hueso: #f4f0e6;
+  --hueso-2: #ebe5d6;
+  --negro: #100f0d;
+  --tinta: #1d1b17;
+  --gris: #6b665c;
+  --linea: #d8d0bd;
+  --oro: #9d7c2f;        /* sobre claro */
+  --oro-claro: #c9a44c;  /* sobre oscuro */
+  --r: 2px;
+  --display: "Cormorant Garamond", Georgia, serif;
+  --ui: "Outfit", system-ui, sans-serif;
+  --ancho: 1280px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}

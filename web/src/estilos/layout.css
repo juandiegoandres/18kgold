@@ -1,0 +1,184 @@
+/* Layout común: anuncio, cabecera negra, tira de precios, menú móvil, pie y WhatsApp. */
+
+/* ---------- Marca animada (se dibuja sola) ---------- */
+.marca { color: var(--oro-claro); overflow: visible; flex: none; }
+.marca [pathLength] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: marca-dibuja 1.5s cubic-bezier(.3, .8, .3, 1) forwards;
+}
+.marca .mk-piramide [pathLength] { animation-delay: .1s; }
+.marca .mk-piramide [pathLength]:nth-child(n + 4) { animation-delay: .45s; }
+.marca .mk-diamante [pathLength] { animation-delay: .6s; animation-duration: 1.1s; }
+.marca .mk-hilo [pathLength] { animation-delay: .8s; animation-duration: 1.7s; }
+.marca .mk-aguja [pathLength] { animation-delay: 1.3s; animation-duration: .7s; }
+.marca .mk-ocultas { opacity: 0; animation: marca-aparece .8s ease 1.2s forwards; }
+@keyframes marca-dibuja { to { stroke-dashoffset: 0; } }
+@keyframes marca-aparece { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .marca [pathLength] { animation: none; stroke-dashoffset: 0; }
+  .marca .mk-ocultas { animation: none; opacity: 1; }
+}
+
+/* ---------- Franja de anuncio ---------- */
+.anuncio { background: var(--oro-claro); color: var(--negro); }
+.anuncio p {
+  min-height: 34px; display: flex; align-items: center; justify-content: center; text-align: center;
+  padding-block: 7px; font-size: var(--t-xs); font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.4;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera { background: var(--negro); color: var(--texto-oscuro); border-bottom: 1px solid var(--linea-oscura); }
+.cabecera-fila { display: flex; align-items: center; gap: 24px; min-height: var(--alto-cabecera); }
+.cabecera-logo { display: flex; align-items: center; gap: 14px; color: var(--hueso); min-width: 0; }
+.cabecera-nombre { display: grid; line-height: 1.1; }
+.cabecera-nombre b { font-family: var(--display); font-size: 1.32rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; }
+.cabecera-nombre small { font-size: .56rem; letter-spacing: .32em; text-transform: uppercase; color: var(--oro-claro); margin-top: 3px; white-space: nowrap; }
+
+.nav { display: flex; gap: 6px; margin-left: auto; }
+.nav-enlace {
+  position: relative; padding: 10px 14px; font-size: var(--t-xs); font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; color: #bdb5a6; transition: color .3s;
+}
+.nav-enlace::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 1px; background: var(--oro-claro);
+  transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease);
+}
+.nav-enlace:hover, .nav-enlace.activa { color: var(--hueso); }
+.nav-enlace:hover::after, .nav-enlace.activa::after { transform: scaleX(1); transform-origin: left; }
+
+.cabecera-acciones { display: flex; align-items: center; gap: 4px; }
+/* «Diseña tu joya»: botón de oro plano, la acción principal de la tienda. */
+.nav-cta {
+  display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; margin-right: 10px;
+  background: var(--oro-claro); color: var(--negro); border: 1px solid var(--oro-claro); border-radius: var(--r);
+  font-size: var(--t-xs); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap;
+  transition: background-color .3s, color .3s, border-color .3s;
+}
+.nav-cta:hover { background: var(--hueso); border-color: var(--hueso); }
+.nav-cta.activa { background: transparent; color: var(--oro-claro); }
+.nav-cta-corto { display: none; }
+.boton-bolsa {
+  position: relative; display: grid; place-items: center; width: 48px; height: 48px;
+  border: 1px solid var(--linea-oscura); border-radius: var(--r); color: var(--hueso); transition: border-color .3s, color .3s;
+}
+.boton-bolsa:hover, .boton-bolsa.activa { border-color: var(--oro-claro); color: var(--oro-claro); }
+.bolsa-contador {
+  position: absolute; top: -7px; right: -7px; min-width: 20px; height: 20px; padding: 0 5px;
+  display: grid; place-items: center; background: var(--oro-claro); color: var(--negro);
+  font-size: .68rem; font-weight: 500; border-radius: var(--r); line-height: 1;
+}
+.bolsa-contador[hidden] { display: none; }
+.bolsa-contador.salto { animation: bolsa-salto .5s var(--ease); }
+@keyframes bolsa-salto { 40% { transform: scale(1.3); } }
+
+.boton-menu { display: none; width: 48px; height: 48px; position: relative; color: var(--hueso); }
+.boton-menu span { position: absolute; left: 13px; right: 13px; height: 1px; background: currentColor; }
+.boton-menu span:first-child { top: 20px; }
+.boton-menu span:last-child { top: 27px; }
+
+/* ---------- Tira de precios del gramo ---------- */
+.tira-precios { border-bottom: 1px solid var(--linea); background: var(--hueso); }
+.tira-fila { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 40px; min-height: 64px; padding-block: 10px; }
+.tira-titulo { margin: 0; }
+.tira-precio { display: flex; align-items: center; gap: 12px; }
+.tira-precio + .tira-precio { padding-left: 40px; border-left: 1px solid var(--linea); }
+.bandera { font-size: 1.35rem; line-height: 1; }
+.tira-dato { display: grid; line-height: 1.2; }
+.tira-rotulo { font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--gris); }
+.tira-dato b { font-family: var(--display); font-size: 1.35rem; font-weight: 600; color: var(--negro); font-variant-numeric: lining-nums tabular-nums; }
+
+/* ---------- Menú móvil ---------- */
+.menu-movil {
+  position: fixed; inset: 0; z-index: 60; background: var(--negro); color: var(--hueso);
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.menu-movil[hidden] { display: none; }
+.menu-cabeza { display: flex; align-items: center; justify-content: space-between; min-height: var(--alto-cabecera); border-bottom: 1px solid var(--linea-oscura); }
+.menu-cabeza .rotulo { color: var(--gris-claro); }
+.boton-cerrar { width: 48px; height: 48px; display: grid; place-items: center; margin-right: -12px; color: var(--hueso); }
+.menu-lista { display: grid; padding-block: 24px; }
+.menu-enlace {
+  display: flex; align-items: baseline; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--linea-oscura);
+  font-family: var(--display); font-size: 2.1rem; line-height: 1.1; color: var(--hueso);
+}
+.menu-enlace.activa { color: var(--oro-claro); }
+.menu-num { font-family: var(--ui); font-size: var(--t-xs); letter-spacing: .2em; color: var(--gris-claro); }
+.menu-redes { display: grid; gap: 4px; padding-block: 8px 40px; margin-top: auto; }
+.menu-redes a { display: flex; align-items: center; gap: 12px; min-height: 48px; font-size: var(--t-s); letter-spacing: .12em; text-transform: uppercase; color: #cfc7b8; }
+.menu-redes .ico { color: var(--oro-claro); }
+.menu-movil { animation: menu-entra .45s var(--ease); }
+@keyframes menu-entra { from { opacity: 0; } }
+
+/* ---------- Pie ---------- */
+.pie { background: var(--negro); color: #bdb5a6; margin-top: clamp(80px, 12vw, 160px); padding-top: clamp(56px, 8vw, 96px); font-size: var(--t-s); }
+.pie-rejilla { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; padding-bottom: 56px; }
+.pie-logo { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; color: var(--hueso); }
+.pie-logo img { width: 56px; height: 84px; object-fit: cover; border: 1px solid var(--linea-oscura); border-radius: var(--r); }
+.pie-logo span { display: grid; line-height: 1.15; }
+.pie-logo b { font-family: var(--display); font-size: 1.45rem; font-weight: 600; }
+.pie-logo small { font-size: .56rem; letter-spacing: .32em; text-transform: uppercase; color: var(--oro-claro); margin-top: 4px; }
+.pie-marca p { max-width: 36ch; color: #a49c8e; }
+.pie-titulo { font-family: var(--ui); font-size: var(--t-xs); font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--oro-claro); margin-bottom: 18px; }
+.pie-col ul { display: grid; gap: 2px; }
+.pie-col a { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; color: #cfc7b8; transition: color .25s; }
+.pie-col a:hover { color: var(--hueso); }
+.pie-col .ico { color: var(--oro-claro); }
+.pie-gramo { margin-top: 22px; padding: 16px 18px; border: 1px solid var(--linea-oscura); border-radius: var(--r); display: grid; gap: 4px; }
+.pie-gramo .rotulo { color: var(--gris-claro); margin-bottom: 6px; }
+.pie-gramo b { font-family: var(--display); font-size: 1.25rem; font-weight: 600; color: var(--oro-claro); }
+.pie-gramo small { color: var(--gris-claro); }
+.pie-base {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  border-top: 1px solid var(--linea-oscura); padding-block: 24px 96px; color: var(--gris-claro); font-size: var(--t-xs); letter-spacing: .08em;
+}
+.pie-creditos { flex-basis: 100%; font-size: .6875rem; opacity: .7; }
+
+/* ---------- WhatsApp: el único flotante ---------- */
+.wa-flotante {
+  position: fixed; right: 16px; bottom: 16px; z-index: 50;
+  width: 56px; height: 56px; display: grid; place-items: center;
+  background: var(--negro); color: var(--oro-claro);
+  border: 1px solid rgba(201, 164, 76, .55); border-radius: var(--r);
+  transition: background-color .3s, color .3s;
+}
+.wa-flotante:hover { background: var(--oro-claro); color: var(--negro); }
+body.menu-abierto .wa-flotante { display: none; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+  .nav-enlace { padding-inline: 10px; }
+  .nav-enlace::after { left: 10px; right: 10px; }
+  .tira-fila { column-gap: 28px; }
+  .tira-precio + .tira-precio { padding-left: 28px; }
+}
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .nav-cta { margin-left: auto; margin-right: 0; min-height: 40px; padding: 0 14px; }
+  .boton-menu { display: block; margin-right: -12px; }
+  .cabecera-acciones { margin-left: 0; }
+  .boton-bolsa { border-color: transparent; }
+  .tira-fila { grid-template-columns: 1fr 1fr; row-gap: 8px; column-gap: 0; padding-block: 12px; }
+  .tira-titulo { grid-column: 1 / -1; }
+  .tira-precio + .tira-precio { padding-left: 16px; }
+  .pie-rejilla { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  .pie-marca { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  :root { --alto-cabecera: 64px; }
+  .nav-cta { padding: 0 11px; letter-spacing: .14em; }
+  .nav-cta-largo { display: none; }
+  .nav-cta-corto { display: inline; }
+  .cabecera-fila { gap: 12px; }
+  .cabecera-logo { gap: 10px; }
+  .cabecera-logo .marca { width: 30px; height: 35px; }
+  .cabecera-nombre b { font-size: 1.15rem; }
+  .cabecera-nombre small { font-size: .5rem; letter-spacing: .26em; }
+  .tira-precio { gap: 8px; align-items: flex-start; }
+  .bandera { font-size: 1.1rem; margin-top: 2px; }
+  .tira-rotulo { font-size: .62rem; letter-spacing: .08em; }
+  .tira-dato b { font-size: 1.15rem; }
+  .pie-rejilla { grid-template-columns: 1fr; }
+  .pie-base { flex-direction: column; }
+  .wa-flotante { width: 52px; height: 52px; }
+}

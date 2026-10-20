@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diseña tu joya en oro 18k — 18gold KPrada</title>
+<meta name="description" content="Diseña en 3D tu joya en oro 18k: nombre, inicial, placa, medalla de San Benito, cruces, dijes clásicos y anillos. Mírala puesta, con peso y precio estimado al instante, y envíale el diseño a Carlos.">
+<meta name="theme-color" content="#100f0d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="18gold KPrada">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Diseña tu joya en oro 18k — 18gold KPrada">
+<meta property="og:description" content="Nombre, medalla de San Benito, cruces, dijes clásicos y anillos en oro 18k, diseñados por ti en 3D.">
+<meta property="og:image" content="%BASE_URL%img/logo.jpg">
+<link rel="icon" href="%BASE_URL%img/marca.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&display=swap">
+<link rel="preload" as="image" href="%BASE_URL%miniaturas/portada-disena.webp">
+</head>
+<body class="pagina-disena">
+<main id="contenido">
+  <section class="disena" aria-labelledby="disena-titulo">
+    <div class="disena-visor" data-visor>
+      <img class="visor-portada" data-portada src="%BASE_URL%miniaturas/portada-disena.webp" alt="" width="900" height="900" decoding="async">
+      <div class="visor-escena" data-escena></div>
+      <div class="visor-cargando" data-cargando role="status"><span class="cargando-linea" aria-hidden="true"></span><span data-cargando-texto>Preparando el diseñador 3D…</span></div>
+      <div class="visor-vistas segmentos" role="radiogroup" aria-label="Vista" data-vistas>
+        <button type="button" role="radio" data-vista="puesta" aria-checked="true" aria-describedby="vista-ayuda">Puesta</button>
+        <button type="button" role="radio" data-vista="pieza" aria-checked="false">Pieza</button>
+      </div>
+      <p class="solo-lectores" id="vista-ayuda">Muestra la joya puesta, a escala real, sobre una silueta gris.</p>
+      <div class="visor-barra" role="toolbar" aria-label="Controles de la vista">
+        <button type="button" class="visor-boton" data-accion="reverso" aria-pressed="false" hidden>Reverso</button>
+        <button type="button" class="visor-boton" data-accion="grabado" aria-pressed="false" hidden>Ver grabado</button>
+        <button type="button" class="visor-boton" data-accion="regla" aria-pressed="false">Regla</button>
+        <button type="button" class="visor-boton" data-accion="giro" aria-pressed="true">Giro</button>
+        <button type="button" class="visor-boton" data-accion="centrar">Centrar</button>
+      </div>
+      <div class="visor-estado" data-estado aria-live="polite"></div>
+      <p class="visor-medidas" data-l="medidas" aria-live="polite"></p>
+    </div>
+
+    <div class="disena-panel">
+      <header class="panel-cabeza">
+        <div class="panel-titulos">
+          <p class="rotulo-d">Diseñador 3D · Oro 18k</p>
+          <h1 id="disena-titulo" class="panel-titulo">Diseña tu joya</h1>
+        </div>
+        <p class="panel-saludo" data-saludo hidden></p>
+      </header>
+
+      <ol class="pasos" role="tablist" aria-label="Pasos del diseño">
+        <li role="presentation"><button type="button" role="tab" class="paso" data-ir="1" aria-selected="true" aria-controls="paso-1" id="tab-1"><span class="paso-num">1</span><span class="paso-txt">Elige tu pieza</span></button></li>
+        <li role="presentation"><button type="button" role="tab" class="paso" data-ir="2" aria-selected="false" aria-controls="paso-2" id="tab-2"><span class="paso-num">2</span><span class="paso-txt">Personaliza</span></button></li>
+        <li role="presentation"><button type="button" role="tab" class="paso" data-ir="3" aria-selected="false" aria-controls="paso-3" id="tab-3"><span class="paso-num">3</span><span class="paso-txt">Llévala y envía</span></button></li>
+      </ol>
+
+      <div class="panel-cuerpo" data-cuerpo>
+        <!-- Paso 1: galería de piezas -->
+        <section class="paso-hoja" id="paso-1" role="tabpanel" aria-labelledby="tab-1" data-paso="1">
+          <div class="galeria" data-galeria></div>
+          <div class="subgaleria" data-subgaleria hidden></div>
+        </section>
+
+        <!-- Paso 2: controles del tipo elegido -->
+        <section class="paso-hoja" id="paso-2" role="tabpanel" aria-labelledby="tab-2" data-paso="2" hidden>
+          <p class="paso-pieza" data-pieza-nombre></p>
+          <form class="controles" data-controles autocomplete="off" onsubmit="return false"></form>
+          <details class="mas-opciones" data-mas>
+            <summary>Más opciones</summary>
+            <div class="controles" data-avanzados></div>
+            <div class="campo">
+              <span class="campo-rotulo" id="r-acabado">Acabado (vista)</span>
+              <div class="segmentos" role="radiogroup" aria-labelledby="r-acabado" data-comun="acabado">
+                <button type="button" role="radio" data-valor="brillante" aria-checked="true">Brillante</button>
+                <button type="button" role="radio" data-valor="mate" aria-checked="false">Mate</button>
+                <button type="button" role="radio" data-valor="rose" aria-checked="false">Rosé</button>
+              </div>
+            </div>
+          </details>
+          <ul class="avisos" data-avisos></ul>
+        </section>
+
+        <!-- Paso 3: montaje, resumen, código y envío -->
+        <section class="paso-hoja" id="paso-3" role="tabpanel" aria-labelledby="tab-3" data-paso="3" hidden>
+          <fieldset class="grupo grupo-montaje" data-montaje>
+            <legend class="grupo-titulo">¿Cómo la llevas?</legend>
+            <p class="ayuda" data-montaje-anillo hidden>El anillo se lleva solo: no necesita cadena ni tejido.</p>
+            <div class="campo" data-montaje-soporte>
+              <span class="campo-rotulo solo-lectores" id="r-soporte">Soporte</span>
+              <div class="segmentos" role="radiogroup" aria-labelledby="r-soporte" data-m="soporte"></div>
+            </div>
+            <div class="subgrupo" data-sub="cadena" hidden>
+              <div class="campo">
+                <span class="campo-rotulo" id="r-estilo">Estilo de cadena</span>
+                <div class="segmentos segmentos-multi" role="radiogroup" aria-labelledby="r-estilo" data-m="cadena.estilo"></div>
+              </div>
+              <div class="campo campo-rango">
+                <div class="campo-cabeza"><label class="campo-rotulo" for="m-cadena-largo">Largo</label><output class="campo-valor" for="m-cadena-largo" data-ms="cadena.largo_cm"></output></div>
+                <input id="m-cadena-largo" type="range" class="rango" data-mr="cadena.largo_cm" min="40" max="60" step="1">
+              </div>
+              <p class="ayuda nota-cadena">La cadena se cotiza aparte: el estimado incluye solo la pieza y los balines.</p>
+            </div>
+            <div class="subgrupo" data-sub="tejido" hidden>
+              <div class="campo">
+                <span class="campo-rotulo" id="r-uso">Uso</span>
+                <div class="segmentos" role="radiogroup" aria-labelledby="r-uso" data-m="tejido.uso"></div>
+              </div>
+              <div class="campo">
+                <span class="campo-rotulo" id="r-color">Color del hilo <span class="campo-dato" data-color-nombre></span></span>
+                <div class="colores" role="radiogroup" aria-labelledby="r-color" data-m="tejido.color"></div>
+              </div>
+              <div class="campo">
+                <span class="campo-rotulo" id="r-patron">Patrón del tejido</span>
+                <div class="segmentos segmentos-multi" role="radiogroup" aria-labelledby="r-patron" data-m="tejido.patron"></div>
+              </div>
+              <div class="campo campo-rango">
+                <div class="campo-cabeza"><label class="campo-rotulo" for="m-tejido-largo">Largo</label><output class="campo-valor" for="m-tejido-largo" data-ms="tejido.largo_cm"></output></div>
+                <input id="m-tejido-largo" type="range" class="rango" data-mr="tejido.largo_cm" min="14" max="24" step="1">
+              </div>
+              <p class="ayuda">Tejido a mano en hilo de nylon, con cierre corredizo para ajustarlo.</p>
+            </div>
+            <div class="subgrupo" data-sub="balines" hidden>
+              <div class="campo campo-rango">
+                <div class="campo-cabeza"><label class="campo-rotulo" for="m-balines">Balines de oro</label><output class="campo-valor" for="m-balines" data-ms="balines.cantidad"></output></div>
+                <input id="m-balines" type="range" class="rango" data-mr="balines.cantidad" min="0" max="20" step="1">
+              </div>
+              <details class="mas-opciones mas-balines" data-balines-detalle>
+                <summary>Detalles de los balines</summary>
+                <div class="campo">
+                  <span class="campo-rotulo" id="r-diametro">Diámetro</span>
+                  <div class="segmentos" role="radiogroup" aria-labelledby="r-diametro" data-m="balines.diametro"></div>
+                </div>
+                <div class="campo">
+                  <span class="campo-rotulo" id="r-acabado-b">Acabado del balín</span>
+                  <div class="segmentos" role="radiogroup" aria-labelledby="r-acabado-b" data-m="balines.acabado"></div>
+                </div>
+                <div class="campo">
+                  <span class="campo-rotulo" id="r-dist">Distribución</span>
+                  <div class="segmentos" role="radiogroup" aria-labelledby="r-dist" data-m="balines.distribucion"></div>
+                </div>
+                <p class="ayuda">Balín hueco de oro 18k, ensartado en el tejido o la cadena.</p>
+              </details>
+            </div>
+          </fieldset>
+
+          <div class="grupo grupo-oro">
+            <span class="campo-rotulo" id="r-oro">Oro 18k</span>
+            <div class="segmentos" role="radiogroup" aria-labelledby="r-oro" data-comun="tipo_oro">
+              <button type="button" role="radio" data-valor="nacional" aria-checked="true"><span>Nacional</span><small data-gramo-btn="nacional"></small></button>
+              <button type="button" role="radio" data-valor="italiano" aria-checked="false"><span>Italiano</span><small data-gramo-btn="italiano"></small></button>
+            </div>
+          </div>
+
+          <section class="resumen" aria-label="Resumen del diseño">
+            <dl class="resumen-datos">
+              <div><dt>Pieza</dt><dd data-r="pieza">—</dd></div>
+              <div><dt>Medidas</dt><dd data-r="medidas">—</dd></div>
+              <div><dt>Peso estimado</dt><dd data-r="peso">—</dd></div>
+              <div class="resumen-precio"><dt>Precio estimado</dt><dd data-r="precio">—</dd></div>
+            </dl>
+            <p class="resumen-desglose" data-r="desglose"></p>
+            <p class="resumen-nota" data-r="nota">Estimado con oro 18k (15,5 g/cm³) más hechura. Carlos confirma el valor final.</p>
+          </section>
+
+          <section class="grupo bloque-codigo" aria-labelledby="t-codigo" data-bloque-codigo>
+            <h2 class="grupo-titulo" id="t-codigo">Tu código de cliente</h2>
+            <p class="ayuda" data-codigo-ayuda>Con el código que te da Carlos le envías el diseño. Sin código puedes diseñar y pedirlo por WhatsApp.</p>
+            <div class="fila-codigo">
+              <label class="solo-lectores" for="codigo">Código de cliente</label>
+              <input id="codigo" class="entrada entrada-codigo" data-codigo placeholder="KP-XXXXX" maxlength="8" spellcheck="false" autocapitalize="characters" inputmode="text">
+              <button type="button" class="boton-d boton-d-linea" data-validar>Validar</button>
+            </div>
+            <p class="mensaje" data-codigo-msj role="status"></p>
+          </section>
+
+          <section class="grupo bloque-envio" aria-labelledby="t-envio">
+            <h2 class="grupo-titulo solo-lectores" id="t-envio">Enviar</h2>
+            <div data-envio-con hidden>
+              <label class="campo-rotulo" for="nota">Nota para Carlos (opcional)</label>
+              <textarea id="nota" class="entrada entrada-area" data-nota rows="2" maxlength="400" placeholder="Fecha para la que lo necesitas, detalles…"></textarea>
+            </div>
+            <div class="enviado" data-enviado hidden role="status"></div>
+          </section>
+        </section>
+      </div>
+
+      <footer class="panel-pie">
+        <div class="pie-datos" aria-live="polite">
+          <span class="pie-precio" data-l="precio">—</span>
+          <span class="pie-peso"><span data-l="peso">—</span> · estimado</span>
+        </div>
+        <div class="pie-botones">
+          <button type="button" class="boton-d boton-d-linea" data-atras hidden>Atrás</button>
+          <button type="button" class="boton-d boton-d-lleno" data-siguiente>Personalizar</button>
+          <a class="boton-d boton-d-lleno" data-pedir-codigo href="https://wa.me/573178861724" target="_blank" rel="noopener" hidden>Pedir por WhatsApp</a>
+          <button type="button" class="boton-d boton-d-lleno" data-enviar hidden>Enviar a Carlos</button>
+        </div>
+      </footer>
+    </div>
+  </section>
+</main>
+<script type="module" src="/src/paginas/disena.js"></script>
+</body>
+</html>

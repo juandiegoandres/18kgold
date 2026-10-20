@@ -1,0 +1,1531 @@
+{
+ "marca": "18gold KPrada",
+ "precios": {
+  "nacional": 352000.0,
+  "italiano": 410000.0,
+  "actualizado": "2026-07-28 01:16:48"
+ },
+ "ajustes": {
+  "whatsapp": "573178861724",
+  "instagram": "18GOLDKPRADA",
+  "tiktok": "18goldKprada",
+  "anuncio": "Envios a toda Colombia",
+  "hechura_gramo": 60000.0,
+  "envio_valor": 15000.0,
+  "envio_gratis_desde": 500000.0
+ },
+ "categorias": [
+  {
+   "slug": "cadenas",
+   "nombre": "Cadenas",
+   "orden": 1
+  },
+  {
+   "slug": "pulseras",
+   "nombre": "Pulseras",
+   "orden": 2
+  },
+  {
+   "slug": "anillos",
+   "nombre": "Anillos",
+   "orden": 3
+  },
+  {
+   "slug": "dijes",
+   "nombre": "Dijes",
+   "orden": 4
+  },
+  {
+   "slug": "aretes",
+   "nombre": "Aretes",
+   "orden": 5
+  },
+  {
+   "slug": "conjuntos",
+   "nombre": "Conjuntos",
+   "orden": 6
+  }
+ ],
+ "productos": [
+  {
+   "id": 1,
+   "slug": "topos-corona-rolex-redondos",
+   "sku": "KP-001",
+   "nombre": "Topos corona Rolex redondos",
+   "descripcion": "Par de topos redondos con la corona grabada dentro de un marco perlado.\n\n• Material: oro 18k nacional\n• Estilo: Corona grabada en bajorrelieve\n• Medida: Ø 6 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "6 mm",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-001-1fe32.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 2,
+   "slug": "topos-alita-de-angel-2",
+   "sku": "KP-002",
+   "nombre": "Topos alita de ángel",
+   "descripcion": "Alitas pequeñas con las plumas marcadas a mano y rosca de seguridad marcada 18k.\n\n• Material: oro 18k nacional\n• Estilo: Alita con plumas marcadas\n• Medida: 8 mm de ancho\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "8 mm de ancho",
+   "precio": 236200,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-002-65b44.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 3,
+   "slug": "topos-media-esfera-4-medidas-3",
+   "sku": "KP-003",
+   "nombre": "Topos media esfera — 4 medidas",
+   "descripcion": "Medidas disponibles: #4 (0.8 g), #5 (1 g), #7 (1.2 g), #8 (1.4 g). Rosca de seguridad.\n\n• Material: oro 18k nacional\n• Estilo: Media esfera lisa pulida\n• Medida: #4 · #5 · #7 · #8\n• Peso de referencia: 1 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.0,
+   "medidas": "#4 · #5 · #7 · #8",
+   "precio": 427000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-003-90081.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 4,
+   "slug": "topos-bal-in-liso-4-medidas-4",
+   "sku": "KP-004",
+   "nombre": "Topos balín liso — 4 medidas",
+   "descripcion": "Cuatro tamaños en un mismo modelo, del más discreto al más llamativo.\n\n• Material: oro 18k nacional\n• Estilo: Balín liso espejo\n• Medida: Medidas 1 a 4\n• Peso de referencia: 0,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.8,
+   "medidas": "Medidas 1 a 4",
+   "precio": 281600,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-004-5098c.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 5,
+   "slug": "topos-luna-con-circones-oro-rosado-5",
+   "sku": "KP-005",
+   "nombre": "Topos luna con circones — oro rosado",
+   "descripcion": "Media luna en tono rosado con circones blancos sobre el borde. Vienen en su cajita.\n\n• Material: oro 18k nacional\n• Estilo: Luna con circones engastados\n• Medida: 8 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "8 mm",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-005-a1df5.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 6,
+   "slug": "surtido-de-topos-infantiles-6",
+   "sku": "KP-006",
+   "nombre": "Surtido de topos infantiles",
+   "descripcion": "Set surtido de topos pequeños, ideales para niña o para segundo hueco.\n\n• Material: oro 18k nacional\n• Estilo: Osito, flor, alita, ratón, mano y trébol\n• Medida: 4 a 7 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "4 a 7 mm",
+   "precio": 176000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-006-9b836.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 7,
+   "slug": "topos-piecitos-de-beb-e-7",
+   "sku": "KP-007",
+   "nombre": "Topos piecitos de bebé",
+   "descripcion": "El detalle más pedido para mamá primeriza. Diminutos y con muy buen acabado.\n\n• Material: oro 18k nacional\n• Estilo: Piecito con deditos marcados\n• Medida: 6 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "6 mm",
+   "precio": 176000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-007-9ecb0.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 8,
+   "slug": "topos-c-irculo-con-barra-8",
+   "sku": "KP-008",
+   "nombre": "Topos círculo con barra",
+   "descripcion": "Diseño minimalista tipo botón, marcado 18k en la rosca.\n\n• Material: oro 18k nacional\n• Estilo: Círculo liso con barra central\n• Medida: Ø 5 mm\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "Ø 5 mm",
+   "precio": 188000,
+   "precio_antes": 211200,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-008-0b58a.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 9,
+   "slug": "topos-luna-con-circones-modelo-2-9",
+   "sku": "KP-009",
+   "nombre": "Topos luna con circones — modelo 2",
+   "descripcion": "Misma luna con circones, presentada en estuche gris.\n\n• Material: oro 18k nacional\n• Estilo: Luna con circones\n• Medida: 8 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "8 mm",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-009-93193.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 10,
+   "slug": "topos-gucci-grano-de-caf-e-10",
+   "sku": "KP-010",
+   "nombre": "Topos gucci grano de café",
+   "descripcion": "Dos pesos disponibles: 1 g y 1.1 g. El clásico que nunca pasa de moda.\n\n• Material: oro 18k nacional\n• Estilo: Eslabón grano de café\n• Medida: 1 g y 1.1 g\n• Peso de referencia: 1,05 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.05,
+   "medidas": "1 g y 1.1 g",
+   "precio": 369600,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-010-04603.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 11,
+   "slug": "conjunto-coraz-on-calado-cadena-dije-y-topos-11",
+   "sku": "KP-011",
+   "nombre": "Conjunto corazón calado — cadena, dije y topos",
+   "descripcion": "Conjunto completo: cadena veneciana fina, dije de corazón calado y los topos a juego.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Corazón calado + cadena veneciana\n• Medida: Cadena 45 cm\n• Peso de referencia: 2,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "conjuntos",
+   "categoria_nombre": "Conjuntos",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.5,
+   "medidas": "Cadena 45 cm",
+   "precio": 1050000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-011-f6956.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 12,
+   "slug": "topos-bal-in-diamantado-6-medidas-12",
+   "sku": "KP-012",
+   "nombre": "Topos balín diamantado — 6 medidas",
+   "descripcion": "Medidas: #3 (0.5 g), #4 (0.55 g), #5 (0.66 g), #6 (0.7 g), #8 (1.2 g), #9 (1.25 g).\n\n• Material: oro 18k nacional\n• Estilo: Balín con corte diamantado\n• Medida: #3 a #9\n• Peso de referencia: 0,66 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.66,
+   "medidas": "#3 a #9",
+   "precio": 307300,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-012-0b3a4.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 13,
+   "slug": "topos-gucci-3-medidas-13",
+   "sku": "KP-013",
+   "nombre": "Topos gucci — 3 medidas",
+   "descripcion": "Tres pesos del mismo modelo para que elijas qué tan marcado lo quieres.\n\n• Material: oro 18k nacional\n• Estilo: Eslabón grano de café\n• Medida: 0.5 g · 0.6 g · 0.8 g\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "0.5 g · 0.6 g · 0.8 g",
+   "precio": 236200,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-013-95eb6.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 14,
+   "slug": "topos-luna-con-circones-modelo-3-14",
+   "sku": "KP-014",
+   "nombre": "Topos luna con circones — modelo 3",
+   "descripcion": "Presentación en estuche, listos para regalo.\n\n• Material: oro 18k nacional\n• Estilo: Luna con circones\n• Medida: 8 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "8 mm",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-014-6714e.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 15,
+   "slug": "topos-de-circ-on-blanco-y-negro-15",
+   "sku": "KP-015",
+   "nombre": "Topos de circón blanco y negro",
+   "descripcion": "Surtido con circón blanco y circón negro, en varios tamaños y pesos.\n\n• Material: oro 18k nacional\n• Estilo: Circón engastado en garras\n• Medida: 0.4 g a 1.0 g\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "0.4 g a 1.0 g",
+   "precio": 240300,
+   "precio_antes": 261200,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-015-830f5.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 16,
+   "slug": "topos-bal-in-liso-nosca-espa-ola-16",
+   "sku": "KP-016",
+   "nombre": "Topos balín liso — rosca española",
+   "descripcion": "Dos cierres a elegir: mariposa (#4, 0.6 g) o rosca española (#5, 0.8 g).\n\n• Material: oro 18k nacional\n• Estilo: Balín liso\n• Medida: #4 y #5\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "#4 y #5",
+   "precio": 321400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-016-45329.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 17,
+   "slug": "topos-coraz-on-mini-17",
+   "sku": "KP-017",
+   "nombre": "Topos corazón mini",
+   "descripcion": "Los más pequeñitos: discretos y perfectos para uso diario.\n\n• Material: oro 18k nacional\n• Estilo: Corazón liso inflado\n• Medida: 4 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "4 mm",
+   "precio": 251000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-017-e0e11.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 18,
+   "slug": "topos-bal-in-liso-6-medidas-18",
+   "sku": "KP-018",
+   "nombre": "Topos balín liso — 6 medidas",
+   "descripcion": "Medidas: #3 (0.4 g), #4 (0.5 g), #5 (0.6 g), #6 (0.7 g), #7 (0.7 g), #8 (0.8 g).\n\n• Material: oro 18k nacional\n• Estilo: Balín liso espejo\n• Medida: #3 a #8\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "#3 a #8",
+   "precio": 211200,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-018-2fa06.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 19,
+   "slug": "topos-coraz-on-liso-19",
+   "sku": "KP-019",
+   "nombre": "Topos corazón liso",
+   "descripcion": "Corazón lleno con brillo espejo. Rosca de seguridad.\n\n• Material: oro 18k nacional\n• Estilo: Corazón liso\n• Medida: 5 mm\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "5 mm",
+   "precio": 211200,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-019-4d1a7.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 21,
+   "slug": "topos-redondos-diamantados-21",
+   "sku": "KP-021",
+   "nombre": "Topos redondos diamantados",
+   "descripcion": "Disco plano con corte diamantado que hace destellar la luz.\n\n• Material: oro 18k nacional\n• Estilo: Disco con corte diamantado en rayos\n• Medida: Ø 5 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "Ø 5 mm",
+   "precio": 176000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-021-47a99.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 22,
+   "slug": "topos-coraz-on-calado-22",
+   "sku": "KP-022",
+   "nombre": "Topos corazón calado",
+   "descripcion": "Silueta de corazón en hilo de oro, muy livianos.\n\n• Material: oro 18k nacional\n• Estilo: Corazón calado en hilo\n• Medida: 5 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "5 mm",
+   "precio": 218400,
+   "precio_antes": 251000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-022-2fb37.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 23,
+   "slug": "topos-corona-rolex-23",
+   "sku": "KP-023",
+   "nombre": "Topos corona Rolex",
+   "descripcion": "La corona clásica, con las cinco puntas bien definidas.\n\n• Material: oro 18k nacional\n• Estilo: Corona de cinco puntas\n• Medida: 7 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "7 mm",
+   "precio": 321400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-023-4ea0c.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 24,
+   "slug": "topos-arc-angel-san-miguel-24",
+   "sku": "KP-024",
+   "nombre": "Topos Arcángel San Miguel",
+   "descripcion": "Medalla ovalada del Arcángel San Miguel, con la inscripción alrededor.\n\n• Material: oro 18k nacional\n• Estilo: Medalla ovalada en relieve\n• Medida: Ovalado 8 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "Ovalado 8 mm",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-024-3d46c.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 26,
+   "slug": "topos-gucci-con-rosca-de-seguridad-26",
+   "sku": "KP-026",
+   "nombre": "Topos gucci con rosca de seguridad",
+   "descripcion": "Rosca de seguridad para que no se caigan. Tres pesos disponibles.\n\n• Material: oro 18k nacional\n• Estilo: Grano de café con rosca\n• Medida: 0.6 g · 0.7 g · 1.1 g\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "0.6 g · 0.7 g · 1.1 g",
+   "precio": 271400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-026-4f78e.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 27,
+   "slug": "topos-bal-in-diamantado-6-medidas-grandes-27",
+   "sku": "KP-027",
+   "nombre": "Topos balín diamantado — 6 medidas grandes",
+   "descripcion": "Medidas: #3 (0.5 g), #5 (0.6 g), #6 (0.7 g), #7 (0.7 g), #8 (1.2 g), #10 (1.5 g).\n\n• Material: oro 18k nacional\n• Estilo: Balín con corte diamantado\n• Medida: #3 a #10\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "#3 a #10",
+   "precio": 321400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-027-bc808.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 28,
+   "slug": "topos-coraz-on-y-flor-diamantados-28",
+   "sku": "KP-028",
+   "nombre": "Topos corazón y flor diamantados",
+   "descripcion": "Corazón grande con marco perlado (2 g) y flores diamantadas (0.9 g).\n\n• Material: oro 18k nacional\n• Estilo: Corte diamantado en rayos\n• Medida: Corazón 2 g · flor 0.9 g\n• Peso de referencia: 0,9 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.9,
+   "medidas": "Corazón 2 g · flor 0.9 g",
+   "precio": 366800,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-028-0cd9e.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 29,
+   "slug": "topos-gucci-peque-nos-29",
+   "sku": "KP-029",
+   "nombre": "Topos gucci pequeños",
+   "descripcion": "El tamaño más vendido: 0.5 g, discreto y elegante.\n\n• Material: oro 18k nacional\n• Estilo: Grano de café\n• Medida: 0.5 g\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "0.5 g",
+   "precio": 154900,
+   "precio_antes": 176000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-029-cec3b.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 30,
+   "slug": "topos-coraz-on-surtido-de-6-pesos-30",
+   "sku": "KP-030",
+   "nombre": "Topos corazón — surtido de 6 pesos",
+   "descripcion": "Seis pares en distintos pesos y acabados: liso, inflado y diamantado.\n\n• Material: oro 18k nacional\n• Estilo: Corazón liso y diamantado\n• Medida: 0.5 g a 1.0 g\n• Peso de referencia: 0,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.8,
+   "medidas": "0.5 g a 1.0 g",
+   "precio": 281600,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-030-587bd.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 31,
+   "slug": "topos-coraz-on-con-borde-perlado-31",
+   "sku": "KP-031",
+   "nombre": "Topos corazón con borde perlado",
+   "descripcion": "El corazón va enmarcado por una fila de bolitas que le da mucho brillo.\n\n• Material: oro 18k nacional\n• Estilo: Corazón inflado con marco de perlitas\n• Medida: 0.7 g y 0.8 g\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "0.7 g y 0.8 g",
+   "precio": 246400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-031-9902c.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 32,
+   "slug": "topos-coraz-on-doble-marco-32",
+   "sku": "KP-032",
+   "nombre": "Topos corazón doble marco",
+   "descripcion": "Centro texturizado y doble marco pulido. De los más llamativos.\n\n• Material: oro 18k nacional\n• Estilo: Corazón texturizado con doble marco\n• Medida: 0.8 g a 1.0 g\n• Peso de referencia: 0,85 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.85,
+   "medidas": "0.8 g a 1.0 g",
+   "precio": 299200,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-032-83ae7.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 33,
+   "slug": "topos-coraz-on-inflado-33",
+   "sku": "KP-033",
+   "nombre": "Topos corazón inflado",
+   "descripcion": "Corazón lleno, redondeado, con muy buen peso para su tamaño.\n\n• Material: oro 18k nacional\n• Estilo: Corazón liso inflado\n• Medida: 0.8 g y 0.9 g\n• Peso de referencia: 0,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.8,
+   "medidas": "0.8 g y 0.9 g",
+   "precio": 356600,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-033-b84ca.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 34,
+   "slug": "topos-coraz-on-y-flor-3-pesos-34",
+   "sku": "KP-034",
+   "nombre": "Topos corazón y flor — 3 pesos",
+   "descripcion": "Tres presentaciones: corazón diamantado, flor diamantada y corazón liso.\n\n• Material: oro 18k nacional\n• Estilo: Diamantado y liso\n• Medida: 0.6 g · 0.7 g · 1.0 g\n• Peso de referencia: 0,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.8,
+   "medidas": "0.6 g · 0.7 g · 1.0 g",
+   "precio": 306600,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-034-c72e8.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 35,
+   "slug": "topos-tr-ebol-diamantado-35",
+   "sku": "KP-035",
+   "nombre": "Topos trébol diamantado",
+   "descripcion": "El trébol de la suerte con corte diamantado y borde de perlitas.\n\n• Material: oro 18k nacional\n• Estilo: Trébol de cuatro hojas con borde perlado\n• Medida: 0.9 g a 1.1 g\n• Peso de referencia: 1 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.0,
+   "medidas": "0.9 g a 1.1 g",
+   "precio": 402000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-035-73cf6.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 36,
+   "slug": "topos-tr-ebol-rojo-esmaltado-36",
+   "sku": "KP-036",
+   "nombre": "Topos trébol rojo esmaltado",
+   "descripcion": "Trébol con centro esmaltado en rojo. Un toque de color muy distinto.\n\n• Material: oro 18k nacional\n• Estilo: Trébol con esmalte rojo\n• Medida: 0.7 g\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "0.7 g",
+   "precio": 214400,
+   "precio_antes": 246400,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-036-09993.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 38,
+   "slug": "topos-tr-ebol-grande-diamantado-38",
+   "sku": "KP-038",
+   "nombre": "Topos trébol grande diamantado",
+   "descripcion": "La versión grande del trébol, para quien busca algo que se note.\n\n• Material: oro 18k nacional\n• Estilo: Trébol grande con borde perlado\n• Medida: 1.6 g y 1.7 g\n• Peso de referencia: 1,65 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.65,
+   "medidas": "1.6 g y 1.7 g",
+   "precio": 605800,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-038-0e53a.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 39,
+   "slug": "topos-virgen-de-guadalupe-39",
+   "sku": "KP-039",
+   "nombre": "Topos Virgen de Guadalupe",
+   "descripcion": "Medalla ovalada de la Virgen de Guadalupe, con la inscripción en el borde.\n\n• Material: oro 18k nacional\n• Estilo: Medalla ovalada en relieve\n• Medida: 0.6 g a 0.8 g\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "0.6 g a 0.8 g",
+   "precio": 271400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-039-a83a7.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 40,
+   "slug": "topos-virgen-milagrosa-40",
+   "sku": "KP-040",
+   "nombre": "Topos Virgen Milagrosa",
+   "descripcion": "Medalla de la Virgen Milagrosa con la oración alrededor.\n\n• Material: oro 18k nacional\n• Estilo: Medalla ovalada en relieve\n• Medida: 0.6 g y 0.7 g\n• Peso de referencia: 0,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.6,
+   "medidas": "0.6 g y 0.7 g",
+   "precio": 211200,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-040-00dbb.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 41,
+   "slug": "argollas-criollas-surtido-de-8-41",
+   "sku": "KP-041",
+   "nombre": "Argollas criollas — surtido de 8",
+   "descripcion": "Ocho modelos distintos: lisas, torcidas y con corte diamantado.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Lisas, torzal y diamantadas\n• Medida: 0.9 g a 1.3 g\n• Peso de referencia: 1,2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.2,
+   "medidas": "0.9 g a 1.3 g",
+   "precio": 492000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-041-c4c51.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 42,
+   "slug": "topos-tr-ebol-diamantado-1-g-42",
+   "sku": "KP-042",
+   "nombre": "Topos trébol diamantado 1 g",
+   "descripcion": "El trébol en su peso más equilibrado: 1 g el par.\n\n• Material: oro 18k nacional\n• Estilo: Trébol con borde perlado\n• Medida: 1.0 g\n• Peso de referencia: 1 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.0,
+   "medidas": "1.0 g",
+   "precio": 352000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-042-a8271.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 43,
+   "slug": "argollas-criollas-modelos-gruesos-43",
+   "sku": "KP-043",
+   "nombre": "Argollas criollas — modelos gruesos",
+   "descripcion": "Criollas de mayor calibre, con acabados torcidos y diamantados.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Torzal y diamantadas\n• Medida: 1.1 g a 1.9 g\n• Peso de referencia: 1,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.5,
+   "medidas": "1.1 g a 1.9 g",
+   "precio": 528900,
+   "precio_antes": 615000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-043-d4bbc.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 44,
+   "slug": "argollas-criollas-surtido-mediano-44",
+   "sku": "KP-044",
+   "nombre": "Argollas criollas — surtido mediano",
+   "descripcion": "Ocho modelos en pesos medios, muy cómodas para uso diario.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Lisas y diamantadas\n• Medida: 1.0 g a 1.4 g\n• Peso de referencia: 1,2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.2,
+   "medidas": "1.0 g a 1.4 g",
+   "precio": 542000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-044-e4c85.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 45,
+   "slug": "argollas-criollas-torzal-45",
+   "sku": "KP-045",
+   "nombre": "Argollas criollas torzal",
+   "descripcion": "El tejido torcido que le da movimiento y brillo desde cualquier ángulo.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Torzal trenzado\n• Medida: 1.0 g a 1.6 g\n• Peso de referencia: 1,3 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.3,
+   "medidas": "1.0 g a 1.6 g",
+   "precio": 533000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-045-4c277.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 46,
+   "slug": "topos-corona-con-circones-46",
+   "sku": "KP-046",
+   "nombre": "Topos corona con circones",
+   "descripcion": "La corona con circón blanco en cada punta. Muy vistosos.\n\n• Material: oro 18k nacional\n• Estilo: Corona con circones en las puntas\n• Medida: 1.3 g y 1.4 g\n• Peso de referencia: 1,35 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.35,
+   "medidas": "1.3 g y 1.4 g",
+   "precio": 500200,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-046-101fe.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 47,
+   "slug": "argollas-criollas-surtido-grande-47",
+   "sku": "KP-047",
+   "nombre": "Argollas criollas — surtido grande",
+   "descripcion": "Ocho modelos, del más fino al más grueso.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Diamantadas y lisas\n• Medida: 1.1 g a 1.9 g\n• Peso de referencia: 1,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.5,
+   "medidas": "1.1 g a 1.9 g",
+   "precio": 690000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-047-c0ac0.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 48,
+   "slug": "topos-corona-en-disco-48",
+   "sku": "KP-048",
+   "nombre": "Topos corona en disco",
+   "descripcion": "La corona grabada dentro de un disco con borde de perlitas.\n\n• Material: oro 18k nacional\n• Estilo: Corona dentro de disco perlado\n• Medida: Ø 6 mm\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "Ø 6 mm",
+   "precio": 321400,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-048-3aa00.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 49,
+   "slug": "topos-corona-mini-49",
+   "sku": "KP-049",
+   "nombre": "Topos corona mini",
+   "descripcion": "La versión más discreta de la corona: 0.5 g el par.\n\n• Material: oro 18k nacional\n• Estilo: Corona pequeña\n• Medida: 5 mm\n• Peso de referencia: 0,5 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.5,
+   "medidas": "5 mm",
+   "precio": 251000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-049-8395e.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 50,
+   "slug": "topos-corona-2-pesos-50",
+   "sku": "KP-050",
+   "nombre": "Topos corona — 2 pesos",
+   "descripcion": "Dos pesos del mismo modelo, según qué tan marcada la quieras.\n\n• Material: oro 18k nacional\n• Estilo: Corona de cinco puntas\n• Medida: 0.6 g y 0.7 g\n• Peso de referencia: 0,7 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "aretes",
+   "categoria_nombre": "Aretes",
+   "tipo_oro": "nacional",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.7,
+   "medidas": "0.6 g y 0.7 g",
+   "precio": 305300,
+   "precio_antes": 321400,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-050-2882d.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 51,
+   "slug": "pulsera-rosario-italiana-con-cruz-51",
+   "sku": "KP-051",
+   "nombre": "Pulsera rosario italiana con cruz",
+   "descripcion": "Pulsera tipo rosario con cruz y medalla de la Virgen. También en versión con bolitas tricolor.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Cadena de bolitas con cruz y medalla\n• Medida: 19 cm\n• Peso de referencia: 1,6 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.6,
+   "medidas": "19 cm",
+   "precio": 656000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-051-e0d32.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 52,
+   "slug": "pulsera-figaro-3-en-1-italiana-52",
+   "sku": "KP-052",
+   "nombre": "Pulsera figaro 3 en 1 italiana",
+   "descripcion": "El tejido figaro clásico: tres eslabones cortos y uno largo. Marcada ITALY.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido figaro (3 en 1)\n• Medida: 20 cm\n• Peso de referencia: 1,9 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.9,
+   "medidas": "20 cm",
+   "precio": 779000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-052-d4bfc.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 53,
+   "slug": "pulsos-cubanos-italianos-53",
+   "sku": "KP-053",
+   "nombre": "Pulsos cubanos italianos",
+   "descripcion": "Ocho pesos disponibles, de 1.42 g a 3.15 g. Marcados 18k italiano.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido cubano\n• Medida: 18 y 20 cm\n• Peso de referencia: 1,9 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.9,
+   "medidas": "18 y 20 cm",
+   "precio": 779000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-053-8a866.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 54,
+   "slug": "pulseras-italianas-con-charms-54",
+   "sku": "KP-054",
+   "nombre": "Pulseras italianas con charms",
+   "descripcion": "Con mariposas, lunas y estrellitas colgando. De 2 g a 2.1 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Cadena fina con dijes colgantes\n• Medida: 18 y 19 cm\n• Peso de referencia: 2,05 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.05,
+   "medidas": "18 y 19 cm",
+   "precio": 840500,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-054-decd5.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 55,
+   "slug": "pulsera-cubano-doble-italiana-55",
+   "sku": "KP-055",
+   "nombre": "Pulsera cubano doble italiana",
+   "descripcion": "Tejido cubano de doble eslabón, marcada ITALY en el broche.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido cubano doble\n• Medida: 18 cm\n• Peso de referencia: 1,53 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.53,
+   "medidas": "18 cm",
+   "precio": 702300,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-055-31cd7.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 56,
+   "slug": "pulsos-tejido-chino-livianos-56",
+   "sku": "KP-056",
+   "nombre": "Pulsos tejido chino livianos",
+   "descripcion": "Livianos y flexibles, de 1.05 g a 1.17 g. Muy cómodos para el día a día.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido chino redondo\n• Medida: 18 y 20 cm\n• Peso de referencia: 1,1 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.1,
+   "medidas": "18 y 20 cm",
+   "precio": 451000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-056-eb9ed.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 57,
+   "slug": "esclavas-italianas-57",
+   "sku": "KP-057",
+   "nombre": "Esclavas italianas",
+   "descripcion": "Placa lisa lista para grabar el nombre. Ideal para bebé o niña.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Placa lisa para grabar\n• Medida: 15 cm\n• Peso de referencia: 2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.0,
+   "medidas": "15 cm",
+   "precio": 802800,
+   "precio_antes": 845000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-057-0f7dc.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 58,
+   "slug": "pulsera-tejido-franco-italiana-58",
+   "sku": "KP-058",
+   "nombre": "Pulsera tejido franco italiana",
+   "descripcion": "Tejido franco compacto, se ve macizo pero es muy liviana.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido franco (espiga)\n• Medida: Ajustable\n• Peso de referencia: 1,2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.2,
+   "medidas": "Ajustable",
+   "precio": 542000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-058-89dc1.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 59,
+   "slug": "pulseras-ojo-turco-italianas-59",
+   "sku": "KP-059",
+   "nombre": "Pulseras ojo turco italianas",
+   "descripcion": "Con ojos turcos azules o blancos entre bolitas diamantadas. Para la buena suerte.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Cadena con ojos turcos esmaltados\n• Medida: 20 cm\n• Peso de referencia: 2,2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.2,
+   "medidas": "20 cm",
+   "precio": 927000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-059-7bf47.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 60,
+   "slug": "pulseras-figaro-3-en-1-livianas-60",
+   "sku": "KP-060",
+   "nombre": "Pulseras figaro 3 en 1 livianas",
+   "descripcion": "Las más livianas del figaro: de 0.9 g a 1 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido figaro\n• Medida: 18 · 19.5 · 20 cm\n• Peso de referencia: 0,95 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 0.95,
+   "medidas": "18 · 19.5 · 20 cm",
+   "precio": 414500,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-060-c6c69.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 61,
+   "slug": "pulsos-lazo-italianos-61",
+   "sku": "KP-061",
+   "nombre": "Pulsos lazo italianos",
+   "descripcion": "Cinco pesos: de 1.2 g a 4.75 g. El tejido lazo es de los más resistentes.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido lazo (cordón torcido)\n• Medida: 18 · 19 · 20 cm\n• Peso de referencia: 1,3 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.3,
+   "medidas": "18 · 19 · 20 cm",
+   "precio": 533000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-061-8bc28.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 63,
+   "slug": "pulseras-tejido-chino-3-mm-63",
+   "sku": "KP-063",
+   "nombre": "Pulseras tejido chino 3 mm",
+   "descripcion": "Malla plana de 3 mm, de 1.8 g a 2 g. Se ve mucho más de lo que pesa.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido chino plano 3 mm\n• Medida: 18 y 20 cm\n• Peso de referencia: 1,9 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.9,
+   "medidas": "18 y 20 cm",
+   "precio": 779000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-063-54ba8.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 64,
+   "slug": "pulseras-tejido-chino-6-mm-64",
+   "sku": "KP-064",
+   "nombre": "Pulseras tejido chino 6 mm",
+   "descripcion": "Malla ancha de 6 mm, de 3.3 g a 3.45 g. Muy elegante en la muñeca.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido chino plano 6 mm\n• Medida: 20 y 21 cm\n• Peso de referencia: 3,4 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 3.4,
+   "medidas": "20 y 21 cm",
+   "precio": 1310400,
+   "precio_antes": 1394000,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-064-d959a.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 65,
+   "slug": "pulseras-tejido-chino-6-mm-reforzado-65",
+   "sku": "KP-065",
+   "nombre": "Pulseras tejido chino 6 mm reforzado",
+   "descripcion": "La versión más gruesa: 4.45 g y 4.5 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Tejido chino plano 6 mm\n• Medida: 20 cm\n• Peso de referencia: 4,48 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 4.48,
+   "medidas": "20 cm",
+   "precio": 1836800,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-065-c36af.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 66,
+   "slug": "cadenas-italianas-45-cm-finas-66",
+   "sku": "KP-066",
+   "nombre": "Cadenas italianas 45 cm — finas",
+   "descripcion": "Seis modelos entre 1.82 g y 2 g. Perfectas para llevar un dije.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Singapur y figaro\n• Medida: 45 cm · 2 a 2.1 mm\n• Peso de referencia: 1,9 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.9,
+   "medidas": "45 cm · 2 a 2.1 mm",
+   "precio": 779000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-066-1acf8.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 67,
+   "slug": "cadenas-italianas-50-cm-67",
+   "sku": "KP-067",
+   "nombre": "Cadenas italianas 50 cm",
+   "descripcion": "Seis tejidos distintos, de 1.16 g a 3.5 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Franco, lazo, singapur y espejo\n• Medida: 50 cm · 1.6 a 3 mm\n• Peso de referencia: 2,45 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.45,
+   "medidas": "50 cm · 1.6 a 3 mm",
+   "precio": 1054500,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-067-ac95a.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 68,
+   "slug": "cadenas-italianas-45-cm-surtido-68",
+   "sku": "KP-068",
+   "nombre": "Cadenas italianas 45 cm — surtido",
+   "descripcion": "Diez modelos, de 2.2 g a 3.4 g. Marcadas ITALY.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Lazo, cubano, figaro y franco\n• Medida: 45 cm · 1.6 a 3.3 mm\n• Peso de referencia: 2,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.8,
+   "medidas": "45 cm · 1.6 a 3.3 mm",
+   "precio": 1223000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-068-b2c43.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 69,
+   "slug": "cadenas-45-cm-livianas-69",
+   "sku": "KP-069",
+   "nombre": "Cadenas 45 cm livianas",
+   "descripcion": "Doce modelos livianos, de 0.7 g a 1.9 g. Las más económicas para empezar.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Espejo, forzada, veneciana y figaro\n• Medida: 45 cm\n• Peso de referencia: 1,3 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.3,
+   "medidas": "45 cm",
+   "precio": 558000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-069-8ec67.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 70,
+   "slug": "esclavas-italianas-modelo-2-70",
+   "sku": "KP-070",
+   "nombre": "Esclavas italianas — modelo 2",
+   "descripcion": "Placa lista para grabar, en 1.95 g y 2 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Placa lisa para grabar\n• Medida: 15 cm\n• Peso de referencia: 2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "pulseras",
+   "categoria_nombre": "Pulseras",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.0,
+   "medidas": "15 cm",
+   "precio": 895000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-070-b8cc4.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 71,
+   "slug": "cadenas-italianas-50-cm-surtido-71",
+   "sku": "KP-071",
+   "nombre": "Cadenas italianas 50 cm — surtido",
+   "descripcion": "Doce modelos, de 1.05 g a 4.66 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Chino, veneciana, figaro y cubano\n• Medida: 50 cm · 1.6 a 3.1 mm\n• Peso de referencia: 2,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.8,
+   "medidas": "50 cm · 1.6 a 3.1 mm",
+   "precio": 1090900,
+   "precio_antes": 1173000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-071-af2ed.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 72,
+   "slug": "cadenas-50-cm-livianas-72",
+   "sku": "KP-072",
+   "nombre": "Cadenas 50 cm livianas",
+   "descripcion": "Seis modelos livianos, de 0.9 g a 1.7 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Cubano, bolitas y veneciana\n• Medida: 50 cm\n• Peso de referencia: 1,25 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.25,
+   "medidas": "50 cm",
+   "precio": 537500,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-072-8ae50.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 73,
+   "slug": "cadenas-45-cm-livianas-modelo-2-73",
+   "sku": "KP-073",
+   "nombre": "Cadenas 45 cm livianas — modelo 2",
+   "descripcion": "Doce modelos livianos entre 0.7 g y 1.9 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Surtido de tejidos\n• Medida: 45 cm\n• Peso de referencia: 1,3 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.3,
+   "medidas": "45 cm",
+   "precio": 533000,
+   "precio_antes": null,
+   "destacado": true,
+   "imagenes": [
+    "/mock/productos/kp-073-65b74.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 74,
+   "slug": "cadenas-italianas-50-cm-medianas-74",
+   "sku": "KP-074",
+   "nombre": "Cadenas italianas 50 cm — medianas",
+   "descripcion": "Once modelos de 2.4 g a 3.85 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Figaro, lazo, cubano y veneciana\n• Medida: 50 cm · 1.7 a 3.2 mm\n• Peso de referencia: 3,2 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 3.2,
+   "medidas": "50 cm · 1.7 a 3.2 mm",
+   "precio": 1312000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-074-3bbc0.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 75,
+   "slug": "cadenas-italianas-45-cm-medianas-75",
+   "sku": "KP-075",
+   "nombre": "Cadenas italianas 45 cm — medianas",
+   "descripcion": "Diez modelos de 2.2 g a 3.4 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Lazo, cubano y figaro\n• Medida: 45 cm · 1.6 a 3.3 mm\n• Peso de referencia: 2,8 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 2.8,
+   "medidas": "45 cm · 1.6 a 3.3 mm",
+   "precio": 1148000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-075-eabd1.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 76,
+   "slug": "cadenas-italianas-60-cm-76",
+   "sku": "KP-076",
+   "nombre": "Cadenas italianas 60 cm",
+   "descripcion": "Doce modelos de 2.6 g a 10.9 g. Para hombre o para llevar con dije grande.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Chino, cubano, figaro y lazo\n• Medida: 60 cm · 2 a 6 mm\n• Peso de referencia: 4 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 4.0,
+   "medidas": "60 cm · 2 a 6 mm",
+   "precio": 1640000,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-076-4fd43.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 77,
+   "slug": "cadenas-50-cm-livianas-modelo-2-77",
+   "sku": "KP-077",
+   "nombre": "Cadenas 50 cm livianas — modelo 2",
+   "descripcion": "Seis modelos de 0.9 g a 1.7 g.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Surtido de tejidos\n• Medida: 50 cm\n• Peso de referencia: 1,25 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 1.25,
+   "medidas": "50 cm",
+   "precio": 512500,
+   "precio_antes": null,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-077-d5920.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  },
+  {
+   "id": 78,
+   "slug": "cadenas-italianas-60-cm-gruesas-78",
+   "sku": "KP-078",
+   "nombre": "Cadenas italianas 60 cm — gruesas",
+   "descripcion": "Once modelos de 2.75 g a 11.3 g. Las más imponentes del catálogo.\n\n• Material: oro 18k italiano ley 750\n• Estilo: Cubano, chino, lazo y veneciana\n• Medida: 60 cm · 1.8 a 4 mm\n• Peso de referencia: 4,1 g\n• Garantía de material\n\nEscríbenos por WhatsApp y te mandamos video de la pieza antes de enviarla",
+   "categoria": "cadenas",
+   "categoria_nombre": "Cadenas",
+   "tipo_oro": "italiano",
+   "tipo_precio": "gramo",
+   "peso_gramos": 4.1,
+   "medidas": "60 cm · 1.8 a 4 mm",
+   "precio": 1492600,
+   "precio_antes": 1756000,
+   "destacado": false,
+   "imagenes": [
+    "/mock/productos/kp-078-043ff.jpeg"
+   ],
+   "creado": "2026-07-28 00:24:34"
+  }
+ ]
+}

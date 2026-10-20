@@ -1,0 +1,68 @@
+# Front estático (web/) → GitHub Pages.
+#
+# Variables del repo (Settings → Secrets and variables → Actions → Variables):
+#   VITE_API   URL del Worker, sin barra final (p. ej. https://api.18goldkprada.com). Obligatoria:
+#              si queda vacía el front intentaría el mock, que NO se publica.
+#   BASE_PATH  opcional. Ruta base del sitio. Por defecto /<nombre-del-repo>/ (Pages de proyecto).
+#              Con dominio propio (CNAME) pon «/».
+#
+# El mock (web/public/mock: catálogo de prueba y fotos) se borra de dist antes de publicar.
+
+name: Publicar web en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+
+      - name: Construir
+        env:
+          VITE_API: ${{ vars.VITE_API }}
+          BASE: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+        run: |
+          if [ -z "$VITE_API" ]; then echo "::warning::VITE_API está vacía: la tienda mostrará estados vacíos."; fi
+          npx vite build
+          rm -rf dist/mock
+          # GitHub Pages: sin procesamiento Jekyll
+          touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

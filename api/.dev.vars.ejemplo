@@ -1,0 +1,9 @@
+# Copiar a .dev.vars (no se sube al repo) y llenar los valores.
+# Token del bot que entrega @BotFather
+TELEGRAM_TOKEN=
+# Texto aleatorio largo; Telegram lo manda en el header X-Telegram-Bot-Api-Secret-Token
+TELEGRAM_SECRETO=
+# Segmento aleatorio de la ruta del webhook: /telegram/<TELEGRAM_RUTA_SECRETA>
+TELEGRAM_RUTA_SECRETA=
+# chat_id de los administradores (Carlos), separados por coma
+TELEGRAM_ADMINS=

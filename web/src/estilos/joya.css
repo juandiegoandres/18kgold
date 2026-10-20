@@ -1,0 +1,56 @@
+/* Página de joya. La galería NO es sticky: se desplaza con la página. */
+.joya-cargando { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-top: 48px; }
+.joya { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: 28px; }
+
+.galeria { display: grid; gap: 12px; }
+.galeria-principal { overflow: hidden; border-radius: var(--r); }
+.galeria-minis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.galeria-mini { border: 1px solid transparent; border-radius: var(--r); padding: 0; }
+.galeria-mini[aria-selected="true"] { border-color: var(--negro); }
+
+.joya-datos { display: grid; gap: 18px; align-content: start; }
+.joya-titulo { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.joya-precio { display: grid; gap: 4px; }
+.joya-valor { font-family: var(--display); font-size: clamp(2.2rem, 3.6vw, 3rem); font-weight: 600; color: var(--oro); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.joya-antes { display: flex; gap: 12px; align-items: center; color: var(--gris); }
+.sello-linea { font-size: var(--t-xs); letter-spacing: .14em; padding: 4px 8px; background: var(--negro); color: var(--oro-claro); border-radius: var(--r); }
+.joya-calculo { font-size: var(--t-s); max-width: 48ch; }
+.joya-datos > .linea { background: var(--negro); }
+
+.ficha { display: grid; }
+.ficha div { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--linea); }
+.ficha dt { font-size: var(--t-xs); letter-spacing: .18em; text-transform: uppercase; color: var(--gris); padding-top: 3px; }
+.ficha dd { margin: 0; color: var(--negro); }
+
+.joya-acciones { display: grid; grid-template-columns: auto 1fr; gap: 12px; margin-top: 8px; }
+.cantidad { display: grid; grid-template-columns: 44px 40px 44px; align-items: center; border: 1px solid var(--linea); border-radius: var(--r); }
+.cantidad button { height: 50px; font-size: 1.2rem; color: var(--negro); }
+.cantidad button:hover { color: var(--oro); }
+.cantidad output { text-align: center; font-variant-numeric: lining-nums tabular-nums; }
+.joya-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--exito); color: var(--exito); border-radius: var(--r); font-size: var(--t-s); }
+.joya-aviso[hidden] { display: none; }
+.joya-aviso .enlace-linea { color: var(--negro); margin-left: auto; }
+
+.garantias { display: grid; gap: 0; margin-top: 12px; border-top: 1px solid var(--linea); }
+.garantias li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--linea); }
+.garantias .ico { color: var(--oro); margin-top: 2px; }
+.garantias span { display: grid; font-size: var(--t-s); color: var(--gris); }
+.garantias b { color: var(--negro); font-weight: 400; font-size: var(--t-m); }
+
+.joya-descripcion { display: grid; gap: 12px; margin-top: 16px; }
+.joya-descripcion p { max-width: 58ch; }
+.joya-lista { display: grid; gap: 6px; }
+.joya-lista li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
+.joya-lista li::before { content: ""; width: 10px; height: 1px; background: var(--oro); margin-top: .8em; }
+
+.joya-vacia { padding-top: 56px; }
+
+@media (max-width: 860px) {
+  .joya, .joya-cargando { grid-template-columns: 1fr; }
+  .galeria-minis { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 420px) {
+  .ficha div { grid-template-columns: 110px 1fr; }
+  .joya-acciones { grid-template-columns: 1fr; }
+  .cantidad { justify-self: start; }
+}

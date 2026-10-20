@@ -1,0 +1,41 @@
+/* Catálogo */
+.catalogo-cabeza { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(32px, 4vw, 48px); display: grid; gap: 18px; }
+.catalogo-cabeza .titulo-l { max-width: 16ch; }
+.catalogo-intro { max-width: 52ch; }
+
+.filtros { display: grid; gap: 20px; padding-block: 24px; border-top: 1px solid var(--negro); border-bottom: 1px solid var(--linea); }
+.filtros[hidden] { display: none; }
+.filtros-cats { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 16px;
+  border: 1px solid var(--linea); border-radius: var(--r); font-size: var(--t-s); letter-spacing: .06em; color: var(--tinta);
+  transition: border-color .25s, background-color .25s, color .25s;
+}
+.chip:hover { border-color: var(--negro); }
+.chip[aria-pressed="true"] { background: var(--negro); border-color: var(--negro); color: var(--hueso); }
+.chip-n { font-size: .7rem; color: var(--gris); }
+.chip[aria-pressed="true"] .chip-n { color: var(--oro-claro); }
+
+.filtros-fila { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: end; }
+.campo-buscar { position: relative; }
+.campo-buscar .entrada { padding-left: 44px; }
+.buscar-ico { position: absolute; left: 14px; bottom: 16px; color: var(--gris); pointer-events: none; }
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+.resultado-barra { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; }
+.resultado-barra [hidden] { display: none; }
+.resultado-barra .enlace-linea { white-space: nowrap; }
+
+.rejilla-joyas.sin-resultados { display: block; }
+.sin-resultados-caja { display: grid; gap: 14px; justify-items: start; padding: 48px 0; border-top: 1px solid var(--linea); max-width: 60ch; }
+
+.mas-fila { display: flex; justify-content: center; padding-top: 56px; }
+.mas-fila [hidden] { display: none; }
+
+@media (max-width: 760px) {
+  .filtros-cats { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scrollbar-width: none; }
+  .filtros-cats::-webkit-scrollbar { display: none; }
+  .chip { flex: none; }
+  .filtros-fila { grid-template-columns: 1fr 1fr; }
+  .campo-buscar { grid-column: 1 / -1; }
+}
