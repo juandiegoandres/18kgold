@@ -3,6 +3,10 @@ name = "18gold-api"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
 
+# Dominio propio de la API (Cloudflare crea el DNS y el certificado)
+workers_dev = true
+routes = [{ pattern = "api.18kprada.com", custom_domain = true }]
+
 # Base de datos D1.
 # Crear la remota (una vez):  npx wrangler d1 create 18gold
 # y pegar aquí el database_id que imprime. En local (wrangler dev) el id da igual.
@@ -21,9 +25,9 @@ bucket_name = "18gold-archivos"
 
 [vars]
 # Orígenes permitidos para CORS (coma-separados). Agregar el dominio de GitHub Pages al desplegar.
-ORIGENES = "https://juandiegoandres.github.io,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+ORIGENES = "https://18kprada.com,https://www.18kprada.com,https://juandiegoandres.github.io,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
 # URL pública del front (para los enlaces del bot: /disena/?c=KP-XXXXX)
-SITIO_URL = "https://juandiegoandres.github.io/18kgold"
+SITIO_URL = "https://18kprada.com"
 
 # Secretos (NO van aquí): npx wrangler secret put <NOMBRE>
 #   TELEGRAM_TOKEN, TELEGRAM_SECRETO, TELEGRAM_RUTA_SECRETA, TELEGRAM_ADMINS
