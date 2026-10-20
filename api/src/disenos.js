@@ -102,6 +102,7 @@ export async function postDiseno(request, env, ctx) {
   const cabecera =
     `<b>Diseño nuevo ${fol}</b>\n` +
     `Cliente: ${escaparHtml(cod.cliente)} (${cod.codigo}, le quedan ${restantes})\n` +
+    (cod.nota ? `Tu nota: <i>${escaparHtml(cod.nota)}</i>\n` : '') +
     `Diseño: ${escaparHtml(describirDiseno(tipo, parametros))} · oro ${tipoOro}\n` +
     `Montaje: ${escaparHtml(describirMontaje(montaje))}\n` +
     `Pieza: ${gramosTxt(pesoR)} g (volumen ≈ ${(pesoR / DENSIDAD_ORO_18K).toFixed(3)} cm³)\n` +

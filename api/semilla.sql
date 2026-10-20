@@ -1,4 +1,4 @@
--- Semilla generada por herramientas/migrar.mjs el 2026-10-20T21:05:52.746Z
+-- Semilla generada por herramientas/migrar.mjs el 2026-10-20T22:58:57.278Z
 -- Fuente: legado-php/data/18gold.sqlite. Reemplaza catálogo, categorías e historial de precios.
 DELETE FROM producto_imagenes;
 DELETE FROM productos;

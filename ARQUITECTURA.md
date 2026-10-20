@@ -57,15 +57,23 @@ imagenes:[url absoluta], creado }`. Solo `activo=1`.
 Solo responde a los chat_id en el secreto `TELEGRAM_ADMINS` (lista separada por comas).
 Comandos (en español, con menú `setMyCommands`):
 
-- `/oro` — muestra precios. `/oro nacional 352000` · `/oro italiano 410000` actualiza y guarda historial.
+- `/menu` (también `/start`) — botones: Precio del oro · Subir joya · Buscar y editar joya · Crear código ·
+  Códigos · Pedidos · Diseños · Anuncio de la web · Ayuda. Los pasos que piden un dato dejan una «espera» por
+  chat (`ajustes.bot_espera:<chat>`, vence a los 30 min); `/cancelar` la borra.
+- `/oro` — muestra precios. `/oro nacional 352000` · `/oro italiano 410000` muestra el cambio, el % y cuántas
+  joyas visibles afecta, y **pide confirmar** con botones antes de guardar (y el historial).
 - **Mandar foto** (con o sin pie) → borrador leyendo el pie (peso «4,2 g», «italiano», categoría por
   palabras clave), con botones `Publicar` · `Cambiar nombre` · `Cambiar peso` · `Cambiar categoría` · `Descartar`.
   Varias fotos en álbum = una sola joya.
-- `/productos [texto]` — busca; cada resultado con botones `Ocultar/Mostrar`, `Destacar`, `Peso`, `Precio`, `Borrar`.
+- `/productos [texto]` — busca; cada resultado con botones `Editar`, `Ocultar/Mostrar`, `Destacar`, `Peso`, `Precio`, `Borrar`.
+  `Editar`: nombre, descripción, categoría, oro (nacional ↔ italiano), medidas, descuento (`10%`, `20000` o `0`)
+  y fotos (ver el álbum, agregar, reemplazar todas —la primera nueva queda de portada— o quitar una; mínimo una).
 - `/peso <sku|slug> <gramos>` · `/precio <sku|slug> <valor>` (pasa a precio por pieza) · `/ocultar <sku>` · `/mostrar <sku>`
 - `/codigo <nombre del cliente> [días]` → genera y responde con el código y el enlace
   `https://<dominio>/disena/?c=KP-XXXXX` listo para reenviar por WhatsApp.
-- `/codigos` — vigentes y cuántos diseños lleva cada uno. `/anular KP-XXXXX`.
+  Botón «Agregar nota»: lo que quiere el cliente (`codigos.nota`, migración 0003); se le recuerda a Carlos en el
+  aviso del diseño.
+- `/codigos` — vigentes, cuántos diseños lleva cada uno y su nota. `/anular KP-XXXXX`.
 - `/tejido <valor>` — mano de obra del tejido en nylon (ajuste `tejido_valor`, por defecto 25000).
 - `/disenos` — últimos diseños recibidos; `/pedidos` — últimos pedidos.
 - `/anuncio <texto>` (vacío = quitar) — franja de anuncio de la web.

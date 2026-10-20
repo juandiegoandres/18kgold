@@ -1,4 +1,6 @@
 // Bot de Telegram de Carlos: administra precios, productos, códigos, diseños y pedidos.
+// Sin IA: entiende comandos y botones. /menu es la puerta de entrada; los pasos que piden un
+// dato (peso, nombre, precio…) dejan una "espera" por chat y la siguiente respuesta la completa.
 import { json, ahoraIso, dinero, escaparHtml as h, slugificar, dormir, fechaCorta, waLink, texto } from './util.js';
 import { leerAjustes, fijarAjuste, preciosGramo, hechuraGramo, tejidoValor, calcularPrecio, actualizarPrecioGramo } from './precios.js';
 import { buscarProducto, SELECT_PRODUCTO } from './catalogo.js';
@@ -14,6 +16,7 @@ function describirGuardado(d) {
 }
 
 export const COMANDOS = [
+  ['menu', 'Menú con botones'],
   ['oro', 'Ver o cambiar el precio del gramo'],
   ['productos', 'Buscar y editar joyas'],
   ['codigo', 'Crear código para un cliente'],
@@ -28,30 +31,41 @@ export const COMANDOS = [
   ['hechura', 'Ver o cambiar la hechura por gramo'],
   ['tejido', 'Ver o cambiar el valor del tejido en nylon'],
   ['anuncio', 'Franja de anuncio de la web'],
+  ['cancelar', 'Cancelar lo que estaba haciendo'],
   ['ayuda', 'Qué sé hacer'],
 ];
 
-const AYUDA = `<b>Hola, Carlos.</b> Esto es lo que sé hacer:
+const AYUDA = `<b>Hola, Carlos.</b> Lo más fácil es /menu. Esto es todo lo que sé hacer:
 
 <b>Precios</b>
 /oro — ver precios del gramo
-/oro nacional 352000 · /oro italiano 410000
+/oro nacional 352000 · /oro italiano 410000 (te pido confirmar)
 /hechura 60000 — hechura por gramo de los diseños
 /tejido 25000 — mano de obra del tejido en nylon de los diseños
 
 <b>Joyas</b>
 Mándame una foto (o un álbum) de una joya con un texto, p. ej. «Cadena lazo italiano 4,2 g», y te armo el borrador: el nombre, el peso, el oro (si no dices, nacional) y la categoría salen de tu texto. Lo que falte lo completas con los botones.
-/productos [texto] — buscar y editar
+/productos [texto] — buscar; con «Editar» cambias nombre, descripción, categoría, oro, medidas, descuento y fotos
 /peso KP-012 3.4 · /precio KP-012 250000
 /ocultar KP-012 · /mostrar KP-012
 
 <b>Clientes</b>
-/codigo Ana Pérez [días] — código para diseñar
+/codigo Ana Pérez [días] — código para diseñar (luego le puedes poner una nota)
 /codigos — vigentes · /anular KP-XXXXX
 /disenos — últimos diseños · /pedidos — últimos pedidos
 
 <b>Web</b>
-/anuncio Envíos gratis este fin de semana (vacío = quitar)`;
+/anuncio Envíos gratis este fin de semana (vacío = quitar)
+
+/cancelar — si me quedé esperando un dato que ya no quieres darme`;
+
+const MENU = [
+  [{ text: 'Precio del oro', callback_data: 'm:oro' }, { text: 'Subir joya', callback_data: 'm:subir' }],
+  [{ text: 'Buscar y editar joya', callback_data: 'm:buscar' }, { text: 'Crear código', callback_data: 'm:codigo' }],
+  [{ text: 'Códigos', callback_data: 'm:codigos' }, { text: 'Pedidos', callback_data: 'm:pedidos' }, { text: 'Diseños', callback_data: 'm:disenos' }],
+  [{ text: 'Anuncio de la web', callback_data: 'm:anuncio' }, { text: 'Ayuda', callback_data: 'm:ayuda' }],
+];
+const TEXTO_MENU = '<b>18gold KPrada</b> · ¿Qué hacemos?';
 
 // ---------------------------------------------------------------- entrada del webhook
 
@@ -102,18 +116,21 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
   const responder = (txt, botones) => tg.sendMessage(env, chat, txt, botones);
   switch (cmd) {
     case 'start':
+    case 'menu':
+      return responder(TEXTO_MENU, MENU);
+
     case 'ayuda':
     case 'help':
       return responder(AYUDA);
 
+    case 'cancelar':
+      return responder('Listo, no estoy esperando nada.', MENU);
+
     case 'oro': {
-      if (!partes.length) return responder(await textoPrecios(env));
+      if (!partes.length) return responder(await textoPrecios(env), botonesOro());
       const tipo = (partes[0] || '').toLowerCase();
-      const valor = numeroPrecio(partes[1]);
-      if (!['nacional', 'italiano'].includes(tipo) || !valor) return responder('Así: <code>/oro nacional 352000</code> o <code>/oro italiano 410000</code>');
-      if (valor < 50000 || valor > 5000000) return responder(`¿Seguro? ${dinero(valor)} por gramo se sale de lo normal. Revísalo y vuelve a intentar.`);
-      await actualizarPrecioGramo(env, tipo, valor);
-      return responder(`Listo. Oro ${tipo}: <b>${dinero(valor)}</b> por gramo. La web ya muestra los precios nuevos.\n\n${await textoPrecios(env)}`);
+      if (!['nacional', 'italiano'].includes(tipo)) return responder('Así: <code>/oro nacional 352000</code> o <code>/oro italiano 410000</code>');
+      return proponerOro(env, chat, tipo, partes[1]);
     }
 
     case 'hechura': {
@@ -147,7 +164,7 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
       if (partes.length < 2) return responder(cmd === 'peso' ? 'Así: <code>/peso KP-012 3.4</code>' : 'Así: <code>/precio KP-012 250000</code>');
       const p = await buscarProducto(env, ref);
       if (!p) return responder(`No encontré «${h(ref)}». Prueba con /productos ${h(ref)}`);
-      return responder(await aplicarValor(env, cmd, p.id, valorTxt));
+      return responderProducto(env, chat, p.id, await aplicarValor(env, cmd, p.id, valorTxt));
     }
 
     case 'ocultar':
@@ -170,7 +187,10 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
       const mensaje = `Hola ${cliente}, este es tu código para diseñar tu joya en 18gold KPrada: ${c.codigo}\nEntra aquí y crea tu diseño: ${enlace}`;
       return responder(
         `Código para <b>${h(cliente)}</b>: <code>${c.codigo}</code>\nVence: ${fechaCorta(c.expira)} · hasta ${c.max_disenos} diseños\n\n<b>Para reenviar:</b>\n${h(mensaje)}`,
-        [[{ text: 'Compartir por WhatsApp', url: 'https://wa.me/?text=' + encodeURIComponent(mensaje) }]]
+        [
+          [{ text: 'Compartir por WhatsApp', url: 'https://wa.me/?text=' + encodeURIComponent(mensaje) }],
+          [{ text: 'Agregar nota (qué quiere el cliente)', callback_data: `c:nota:${c.id}` }],
+        ]
       );
     }
 
@@ -180,7 +200,8 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
       ).bind(ahoraIso()).all();
       if (!results.length) return responder('No hay códigos vigentes. Crea uno con /codigo Nombre');
       return responder('<b>Códigos vigentes</b>\n\n' + results.map((c) =>
-        `<code>${c.codigo}</code> ${h(c.cliente)} — ${c.usados}/${c.max_disenos} diseños · vence ${fechaCorta(c.expira)}`).join('\n'));
+        `<code>${c.codigo}</code> ${h(c.cliente)} — ${c.usados}/${c.max_disenos} diseños · vence ${fechaCorta(c.expira)}` +
+        (c.nota ? `\n   <i>${h(c.nota)}</i>` : '')).join('\n'));
     }
 
     case 'anular': {
@@ -205,7 +226,7 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
     }
 
     default:
-      return responder('No conozco ese comando. Mira /ayuda');
+      return responder('No conozco ese comando. Toca /menu o mira /ayuda');
   }
 }
 
@@ -217,10 +238,50 @@ async function textoPrecios(env) {
     (r?.f ? `\n\nÚltimo cambio: ${fechaCorta(r.f)}` : '');
 }
 
+const botonesOro = () => [[
+  { text: 'Cambiar nacional', callback_data: 'o:pide:nacional' },
+  { text: 'Cambiar italiano', callback_data: 'o:pide:italiano' },
+]];
+
+/** Muestra el cambio del gramo con lo que afecta y pide confirmar: un dedo mal puesto mueve toda la tienda. */
+async function proponerOro(env, chat, tipo, valorTxt) {
+  const valor = numeroPrecio(valorTxt);
+  if (!valor) return tg.sendMessage(env, chat, `Escríbeme el precio del gramo ${tipo} en pesos, p. ej. <code>/oro ${tipo} 455000</code>`);
+  if (valor < 50000 || valor > 5000000) return tg.sendMessage(env, chat, `¿Seguro? ${dinero(valor)} por gramo se sale de lo normal. Revísalo y vuelve a intentar.`);
+  const actual = preciosGramo(await leerAjustes(env))[tipo];
+  if (valor === actual) return tg.sendMessage(env, chat, `El oro ${tipo} ya está en ${dinero(valor)}. No cambié nada.`);
+  const n = (await env.DB.prepare(
+    "SELECT COUNT(*) n FROM productos WHERE activo = 1 AND tipo_precio = 'gramo' AND tipo_oro = ?"
+  ).bind(tipo).first())?.n ?? 0;
+  const pct = actual ? ((valor - actual) / actual) * 100 : 0;
+  return tg.sendMessage(env, chat,
+    `<b>Oro ${tipo}</b>: ${dinero(actual)} → <b>${dinero(valor)}</b> por gramo` +
+    (actual ? ` (${pct > 0 ? '+' : ''}${pct.toFixed(1).replace('.', ',')} %)` : '') +
+    `\nCambia el precio de ${n} joya${n === 1 ? '' : 's'} visible${n === 1 ? '' : 's'} y de los diseños en oro ${tipo}.\n\n¿Confirmas?`,
+    [[{ text: 'Sí, cambiar', callback_data: `o:ok:${tipo}:${valor}` }, { text: 'No', callback_data: 'o:no' }]]);
+}
+
 // "360.000" / "$360000" → 360000
 const numeroPrecio = (s) => { const n = Number(String(s || '').replace(/[^\d]/g, '')); return n > 0 ? n : 0; };
 // "3,2" / "3.2g" → 3.2
 const numeroGramos = (s) => gramos(String(s || '').replace(',', '.').replace(/[^\d.]/g, '')) || 0;
+
+/**
+ * Texto de descuento → {tipo, valor} o null si no se entiende.
+ * «0», «quitar», «no», «ninguno» → sin descuento · «10%» → porcentaje · «20000» / «$20.000» → valor en pesos.
+ */
+export function leerDescuento(t) {
+  const s = String(t || '').trim().toLowerCase();
+  if (/^(0|no|quitar|ninguno|sin descuento)$/.test(s)) return { tipo: 'ninguno', valor: 0 };
+  const pct = s.match(/^(\d{1,2}(?:[.,]\d+)?)\s*%$/);
+  if (pct) {
+    const v = Number(pct[1].replace(',', '.'));
+    return v > 0 && v <= 90 ? { tipo: 'porcentaje', valor: v } : null;
+  }
+  if (/%/.test(s)) return null;
+  const v = numeroPrecio(s);
+  return v >= 1000 ? { tipo: 'valor', valor: v } : null;
+}
 
 /** Aplica peso o precio a un producto y devuelve el texto de respuesta. */
 async function aplicarValor(env, accion, id, valorTxt) {
@@ -233,8 +294,7 @@ async function aplicarValor(env, accion, id, valorTxt) {
     if (!v || v < 1000) return 'Ese precio no me cuadra. Escríbelo en pesos, p. ej. <code>250000</code>';
     await env.DB.prepare("UPDATE productos SET precio_pieza = ?, tipo_precio = 'pieza', verificado = 1 WHERE id = ?").bind(v, id).run();
   }
-  const p = await env.DB.prepare(`${SELECT_PRODUCTO} WHERE p.id = ?`).bind(id).first();
-  return 'Listo.\n' + await tarjetaProducto(env, p);
+  return 'Listo.';
 }
 
 // ---------------------------------------------------------------- productos
@@ -243,16 +303,37 @@ async function tarjetaProducto(env, p, precios) {
   precios ||= preciosGramo(await leerAjustes(env));
   const { final, base, ahorro } = calcularPrecio(p, precios);
   const cobro = p.tipo_precio === 'pieza' ? 'precio por pieza' : `${Number(p.peso_gramos).toLocaleString('es-CO')} g`;
+  const dto = p.descuento_tipo === 'porcentaje' ? `${Number(p.descuento_val).toLocaleString('es-CO')} %`
+    : p.descuento_tipo === 'valor' ? dinero(p.descuento_val) : '';
   return `<b>${h(p.sku || '#' + p.id)}</b> ${h(p.nombre)}\n` +
-    `${h(p.categoria_nombre || 'sin categoría')} · oro ${p.tipo_oro} · ${cobro}\n` +
-    `<b>${dinero(final)}</b>${ahorro ? ` (antes ${dinero(base)})` : ''}\n` +
-    `${p.activo ? 'Visible' : 'Oculta'}${p.destacado ? ' · Destacada' : ''}`;
+    `${h(p.categoria_nombre || 'sin categoría')} · oro ${p.tipo_oro} · ${cobro}` + (p.medidas ? ` · ${h(p.medidas)}` : '') + '\n' +
+    `<b>${dinero(final)}</b>${ahorro ? ` (antes ${dinero(base)}, descuento ${dto})` : ''}\n` +
+    `${p.activo ? 'Visible' : 'Oculta'}${p.destacado ? ' · Destacada' : ''}` +
+    (p.descripcion ? `\n<i>${h(String(p.descripcion).slice(0, 300))}</i>` : '');
 }
 
 const botonesProducto = (p) => [
-  [{ text: p.activo ? 'Ocultar' : 'Mostrar', callback_data: `p:vis:${p.id}` }, { text: p.destacado ? 'Quitar destacado' : 'Destacar', callback_data: `p:dest:${p.id}` }],
+  [{ text: 'Editar', callback_data: `p:edit:${p.id}` }, { text: p.activo ? 'Ocultar' : 'Mostrar', callback_data: `p:vis:${p.id}` }, { text: p.destacado ? 'Quitar destacado' : 'Destacar', callback_data: `p:dest:${p.id}` }],
   [{ text: 'Peso', callback_data: `p:peso:${p.id}` }, { text: 'Precio', callback_data: `p:prec:${p.id}` }, { text: 'Borrar', callback_data: `p:bor:${p.id}` }],
 ];
+
+const botonesEditar = (p, nFotos) => [
+  [{ text: 'Nombre', callback_data: `p:nom:${p.id}` }, { text: 'Descripción', callback_data: `p:desc:${p.id}` }],
+  [{ text: 'Categoría', callback_data: `p:cat:${p.id}` }, { text: `Oro: pasar a ${p.tipo_oro === 'italiano' ? 'nacional' : 'italiano'}`, callback_data: `p:oro:${p.id}` }],
+  [{ text: 'Medidas', callback_data: `p:med:${p.id}` }, { text: 'Descuento', callback_data: `p:dto:${p.id}` }],
+  [{ text: `Fotos (${nFotos})`, callback_data: `p:fotos:${p.id}` }],
+  [{ text: 'Volver', callback_data: `p:cancel:${p.id}` }],
+];
+
+const leerProducto = (env, id) => env.DB.prepare(`${SELECT_PRODUCTO} WHERE p.id = ?`).bind(id).first();
+const contarFotos = async (env, id) => (await env.DB.prepare('SELECT COUNT(*) n FROM producto_imagenes WHERE producto_id = ?').bind(id).first())?.n ?? 0;
+
+/** Manda la tarjeta actualizada de una joya con sus botones, precedida de un aviso. */
+async function responderProducto(env, chat, id, aviso = 'Listo.') {
+  const p = await leerProducto(env, id);
+  if (!p) return tg.sendMessage(env, chat, 'Esa joya ya no existe.');
+  return tg.sendMessage(env, chat, `${aviso}\n\n${await tarjetaProducto(env, p)}`, botonesProducto(p));
+}
 
 async function listarProductos(env, chat, q) {
   q = texto(q, 60);
@@ -267,10 +348,12 @@ async function listarProductos(env, chat, q) {
   for (const p of results) await tg.sendMessage(env, chat, await tarjetaProducto(env, p, precios), botonesProducto(p));
 }
 
-// ---------------------------------------------------------------- "esperando respuesta" (peso/precio)
+// ---------------------------------------------------------------- "esperando respuesta"
 
 const claveEspera = (chat) => `bot_espera:${chat}`;
-async function fijarEspera(env, chat, accion, id) { await fijarAjuste(env, claveEspera(chat), JSON.stringify({ accion, id, t: Date.now() })); }
+async function fijarEspera(env, chat, accion, id, extra = {}) {
+  await fijarAjuste(env, claveEspera(chat), JSON.stringify({ ...extra, accion, id, t: Date.now() }));
+}
 async function borrarEspera(env, chat) { await env.DB.prepare('DELETE FROM ajustes WHERE clave = ?').bind(claveEspera(chat)).run(); }
 async function leerEspera(env, chat) {
   const r = await env.DB.prepare('SELECT valor FROM ajustes WHERE clave = ?').bind(claveEspera(chat)).first();
@@ -279,34 +362,98 @@ async function leerEspera(env, chat) {
   return Date.now() - e.t < 30 * 60000 ? e : null; // vence en 30 min
 }
 
+/** Pide un dato y deja la espera; `ejemplo` va en <code>. */
+async function pedir(env, chat, accion, id, pregunta, extra) {
+  await fijarEspera(env, chat, accion, id, extra);
+  return tg.sendMessage(env, chat, `${pregunta}\n<i>(o /cancelar)</i>`);
+}
+
 async function manejarRespuesta(env, chat, t, origen) {
   const e = await leerEspera(env, chat);
-  if (!e) return tg.sendMessage(env, chat, 'No te entendí. Mira /ayuda o mándame una foto de una joya.');
+  if (!e) return tg.sendMessage(env, chat, 'No te entendí. Toca /menu o mándame una foto de una joya.');
   await borrarEspera(env, chat);
-  if (e.accion === 'bpeso') {
-    const g = numeroGramos(t);
-    if (!g || g > 500) { await fijarEspera(env, chat, e.accion, e.id); return tg.sendMessage(env, chat, 'Escríbeme solo el peso en gramos, p. ej. <code>3,2</code>'); }
-    const b = await leerBorrador(env, e.id, chat);
-    if (!b) return;
-    b.propuesta.peso_gramos = g;
-    await guardarPropuesta(env, b);
-    return mostrarBorrador(env, chat, b, true);
+  const reintentar = async (msg) => { await fijarEspera(env, chat, e.accion, e.id, e); return tg.sendMessage(env, chat, msg); };
+
+  switch (e.accion) {
+    // --- borrador de joya nueva
+    case 'bpeso': {
+      const g = numeroGramos(t);
+      if (!g || g > 500) return reintentar('Escríbeme solo el peso en gramos, p. ej. <code>3,2</code>');
+      const b = await leerBorrador(env, e.id, chat);
+      if (!b) return;
+      b.propuesta.peso_gramos = g;
+      await guardarPropuesta(env, b);
+      return mostrarBorrador(env, chat, b, true);
+    }
+    case 'bnombre': {
+      const nombre = texto(t, 80);
+      if (nombre.length < 2) return reintentar('Escríbeme el nombre de la joya, p. ej. <code>Cadena lazo 50 cm</code>');
+      const b = await leerBorrador(env, e.id, chat);
+      if (!b) return;
+      b.propuesta.nombre = nombre;
+      await guardarPropuesta(env, b);
+      return mostrarBorrador(env, chat, b, true);
+    }
+
+    // --- joya publicada
+    case 'peso':
+    case 'precio': {
+      const r = await aplicarValor(env, e.accion, e.id, t);
+      return r === 'Listo.' ? responderProducto(env, chat, e.id) : reintentar(r);
+    }
+    case 'pnom': {
+      const nombre = texto(t, 80);
+      if (nombre.length < 2) return reintentar('Escríbeme el nombre nuevo, p. ej. <code>Cadena lazo 50 cm</code>');
+      await env.DB.prepare('UPDATE productos SET nombre = ? WHERE id = ?').bind(nombre, e.id).run();
+      return responderProducto(env, chat, e.id);
+    }
+    case 'pdesc': {
+      const d = /^(-|quitar|borrar|ninguna)$/i.test(t) ? '' : texto(t, 1000);
+      await env.DB.prepare('UPDATE productos SET descripcion = ? WHERE id = ?').bind(d, e.id).run();
+      return responderProducto(env, chat, e.id, d ? 'Listo, descripción cambiada.' : 'Listo, quité la descripción.');
+    }
+    case 'pmed': {
+      const d = /^(-|quitar|borrar|ninguna)$/i.test(t) ? '' : texto(t, 60);
+      await env.DB.prepare('UPDATE productos SET medidas = ? WHERE id = ?').bind(d, e.id).run();
+      return responderProducto(env, chat, e.id);
+    }
+    case 'pdto': {
+      const d = leerDescuento(t);
+      if (!d) return reintentar('No te entendí. Escribe <code>10%</code>, <code>20000</code> (pesos) o <code>0</code> para quitarlo.');
+      await env.DB.prepare('UPDATE productos SET descuento_tipo = ?, descuento_val = ? WHERE id = ?').bind(d.tipo, d.valor, e.id).run();
+      return responderProducto(env, chat, e.id, d.tipo === 'ninguno' ? 'Listo, sin descuento.' : 'Listo, descuento aplicado.');
+    }
+
+    // --- menú
+    case 'oro':
+      return proponerOro(env, chat, e.tipo, t);
+    case 'buscar':
+      return listarProductos(env, chat, t);
+    case 'codigo':
+      return ejecutarComando(env, chat, 'codigo', t, t.split(/\s+/), origen);
+    case 'cnota': {
+      const nota = /^(-|quitar|borrar|ninguna)$/i.test(t) ? '' : texto(t, 300);
+      const c = await env.DB.prepare('UPDATE codigos SET nota = ? WHERE id = ? RETURNING codigo, cliente').bind(nota, e.id).first();
+      if (!c) return tg.sendMessage(env, chat, 'Ese código ya no existe.');
+      return tg.sendMessage(env, chat, nota
+        ? `Nota guardada en <code>${c.codigo}</code> (${h(c.cliente)}). Te la recuerdo cuando llegue su diseño.`
+        : `Quité la nota de <code>${c.codigo}</code>.`);
+    }
+    case 'anuncio': {
+      const a = /^(-|quitar|borrar|ninguno)$/i.test(t) ? '' : texto(t, 160);
+      await fijarAjuste(env, 'anuncio', a);
+      return tg.sendMessage(env, chat, a ? `Anuncio publicado: «${h(a)}»` : 'Listo, quité el anuncio de la web.');
+    }
   }
-  if (e.accion === 'bnombre') {
-    const nombre = texto(t, 80);
-    if (nombre.length < 2) { await fijarEspera(env, chat, e.accion, e.id); return tg.sendMessage(env, chat, 'Escríbeme el nombre de la joya, p. ej. <code>Cadena lazo 50 cm</code>'); }
-    const b = await leerBorrador(env, e.id, chat);
-    if (!b) return;
-    b.propuesta.nombre = nombre;
-    await guardarPropuesta(env, b);
-    return mostrarBorrador(env, chat, b, true);
-  }
-  return tg.sendMessage(env, chat, await aplicarValor(env, e.accion === 'precio' ? 'precio' : 'peso', e.id, t));
+  return tg.sendMessage(env, chat, 'No te entendí. Toca /menu.');
 }
 
 // ---------------------------------------------------------------- fotos → borrador de producto
 
 async function manejarFoto(env, m, chat, origen) {
+  const e = await leerEspera(env, chat);
+  if (e && (e.accion === 'pfadd' || e.accion === 'pfrep')) return fotosAProducto(env, m, chat, e);
+
   const fileId = m.photo[m.photo.length - 1].file_id; // la de mayor resolución
   const grupo = m.media_group_id ? String(m.media_group_id) : `u${m.message_id}`;
   const ahora = ahoraIso();
@@ -347,6 +494,39 @@ async function manejarFoto(env, m, chat, origen) {
   await env.DB.prepare("UPDATE borradores_bot SET propuesta = ?, claves = ?, estado = 'listo', actualizado = ? WHERE id = ?")
     .bind(JSON.stringify(propuesta), JSON.stringify(claves), ahoraIso(), b.id).run();
   await mostrarBorrador(env, chat, b, false, aviso);
+}
+
+/**
+ * Fotos para una joya ya publicada (botones «Agregar fotos» / «Reemplazar todas»).
+ * Cada foto de un álbum llega en un update aparte: todas se guardan, y solo la primera del
+ * álbum (la que gana el registro `bot_grupo:`) espera a las demás, reemplaza si toca y responde.
+ */
+async function fotosAProducto(env, m, chat, e) {
+  const bytes = await tg.descargarArchivo(env, m.photo[m.photo.length - 1].file_id);
+  if (!bytes) return tg.sendMessage(env, chat, 'No pude descargar esa foto de Telegram. Mándala otra vez.');
+  const clave = `productos/bot-p${e.id}-${crypto.randomUUID().slice(0, 8)}.jpg`;
+  await guardar(env, clave, bytes, 'image/jpeg');
+  await env.DB.prepare(
+    'INSERT INTO producto_imagenes (producto_id, clave, orden) VALUES (?1, ?2, (SELECT COALESCE(MAX(orden), -1) + 1 FROM producto_imagenes WHERE producto_id = ?1))'
+  ).bind(e.id, clave).run();
+
+  if (m.media_group_id) {
+    const marca = `bot_grupo:${m.media_group_id}`;
+    const primero = await env.DB.prepare('INSERT INTO ajustes (clave, valor) VALUES (?, ?) ON CONFLICT(clave) DO NOTHING RETURNING clave')
+      .bind(marca, ahoraIso()).first();
+    if (!primero) return;
+    await dormir(4000);
+    await env.DB.prepare('DELETE FROM ajustes WHERE clave = ?').bind(marca).run();
+  }
+  await borrarEspera(env, chat);
+  let aviso = 'Listo, agregué las fotos.';
+  if (e.accion === 'pfrep') {
+    const viejas = (await env.DB.prepare('SELECT clave FROM producto_imagenes WHERE producto_id = ? AND id <= ?').bind(e.id, e.marca).all()).results.map((r) => r.clave);
+    await env.DB.prepare('DELETE FROM producto_imagenes WHERE producto_id = ? AND id <= ?').bind(e.id, e.marca).run();
+    await borrar(env, viejas).catch(() => {});
+    aviso = `Listo, cambié las fotos (quité ${viejas.length}).`;
+  }
+  return responderProducto(env, chat, e.id, `${aviso} Ahora tiene ${await contarFotos(env, e.id)}.`);
 }
 
 async function leerBorrador(env, id, chat) {
@@ -409,6 +589,13 @@ async function publicarBorrador(env, b) {
   return { id: prod.id, sku, slug };
 }
 
+const filasCategorias = (cats, prefijo, volver) => {
+  const filas = [];
+  for (let i = 0; i < cats.length; i += 3) filas.push(cats.slice(i, i + 3).map((c) => ({ text: c.nombre, callback_data: `${prefijo}:${c.slug}` })));
+  filas.push([{ text: 'Volver', callback_data: volver }]);
+  return filas;
+};
+
 // ---------------------------------------------------------------- botones (callback_query)
 
 async function manejarBoton(env, cq, origen) {
@@ -420,7 +607,42 @@ async function manejarBoton(env, cq, origen) {
   console.log(`[bot] ${chat} botón ${cq.data}`);
   let aviso = '';
 
-  if (grupo === 'b') {
+  if (grupo === 'm') {
+    await borrarEspera(env, chat);
+    if (accion === 'oro') await tg.sendMessage(env, chat, await textoPrecios(env), botonesOro());
+    else if (accion === 'subir') {
+      await tg.sendMessage(env, chat, 'Mándame la foto de la joya (o varias como álbum) con un texto como:\n<code>Cadena lazo italiano 4,2 g 50 cm</code>\n\nDel texto saco el nombre, el peso, el oro (si no dices, nacional), la categoría y las medidas. Lo que falte lo completas con botones antes de publicar.');
+    } else if (accion === 'buscar') await pedir(env, chat, 'buscar', 0, '¿Qué joya buscas? Escribe una palabra (<code>rolo</code>, <code>topos</code>) o el código (<code>KP-012</code>).');
+    else if (accion === 'codigo') await pedir(env, chat, 'codigo', 0, '¿Para quién es el código? Escribe el nombre del cliente (y si quieres los días, p. ej. <code>Ana Pérez 30</code>; por defecto 15).');
+    else if (accion === 'anuncio') {
+      const actual = (await leerAjustes(env)).anuncio || '';
+      await fijarEspera(env, chat, 'anuncio', 0);
+      await tg.sendMessage(env, chat,
+        (actual ? `Anuncio actual: «${h(actual)}»\n\n` : 'Ahora no hay anuncio.\n\n') + 'Escribe el anuncio nuevo para la franja de arriba de la web.\n<i>(o /cancelar)</i>',
+        actual ? [[{ text: 'Quitar anuncio', callback_data: 'm:sinanuncio' }]] : undefined);
+    } else if (accion === 'sinanuncio') {
+      await fijarAjuste(env, 'anuncio', '');
+      await tg.editMessageText(env, chat, msgId, 'Listo, quité el anuncio de la web.');
+    } else if (accion === 'ayuda') await tg.sendMessage(env, chat, AYUDA);
+    else if (['codigos', 'pedidos', 'disenos'].includes(accion)) await ejecutarComando(env, chat, accion, '', [], origen);
+  } else if (grupo === 'o') {
+    if (accion === 'pide') {
+      await pedir(env, chat, 'oro', 0, `¿Nuevo precio del gramo <b>${idTxt}</b>? En pesos, p. ej. <code>455000</code>`, { tipo: idTxt });
+    } else if (accion === 'ok' && ['nacional', 'italiano'].includes(idTxt)) {
+      const valor = Number(extra);
+      await actualizarPrecioGramo(env, idTxt, valor);
+      await tg.editMessageText(env, chat, msgId, `Listo. Oro ${idTxt}: <b>${dinero(valor)}</b> por gramo. La web ya muestra los precios nuevos.\n\n${await textoPrecios(env)}`);
+      aviso = 'Precio cambiado.';
+    } else if (accion === 'no') {
+      await tg.editMessageText(env, chat, msgId, 'No cambié nada.');
+    }
+  } else if (grupo === 'c') {
+    if (accion === 'nota') {
+      const c = await env.DB.prepare('SELECT codigo, cliente, nota FROM codigos WHERE id = ?').bind(id).first();
+      if (c) await pedir(env, chat, 'cnota', id,
+        `Nota para <code>${c.codigo}</code> (${h(c.cliente)}): qué quiere, presupuesto, lo que hablaron.` + (c.nota ? `\nAhora: «${h(c.nota)}»` : ''));
+    }
+  } else if (grupo === 'b') {
     const b = await leerBorrador(env, id, chat);
     if (!b || ['publicado', 'descartado'].includes(b.estado)) {
       await tg.answerCallbackQuery(env, cq.id, 'Ese borrador ya no está activo.');
@@ -444,10 +666,7 @@ async function manejarBoton(env, cq, origen) {
       await tg.sendMessage(env, chat, `¿Cómo se llama la joya? Ahora: «${h(b.propuesta.nombre)}». Escríbeme el nombre nuevo.`);
     } else if (accion === 'cat') {
       const cats = (await env.DB.prepare('SELECT slug, nombre FROM categorias ORDER BY orden').all()).results;
-      const filas = [];
-      for (let i = 0; i < cats.length; i += 3) filas.push(cats.slice(i, i + 3).map((c) => ({ text: c.nombre, callback_data: `b:cs:${b.id}:${c.slug}` })));
-      filas.push([{ text: 'Volver', callback_data: `b:ver:${b.id}` }]);
-      await tg.editMessageReplyMarkup(env, chat, msgId, filas);
+      await tg.editMessageReplyMarkup(env, chat, msgId, filasCategorias(cats, `b:cs:${b.id}`, `b:ver:${b.id}`));
     } else if (accion === 'cs') {
       b.propuesta.categoria = extra;
       await guardarPropuesta(env, b);
@@ -460,12 +679,15 @@ async function manejarBoton(env, cq, origen) {
       await tg.editMessageText(env, chat, msgId, `Descarté el borrador «${h(b.propuesta.nombre)}».`);
     }
   } else if (grupo === 'p') {
-    const p = await env.DB.prepare(`${SELECT_PRODUCTO} WHERE p.id = ?`).bind(id).first();
+    const p = await leerProducto(env, id);
     if (!p) { await tg.answerCallbackQuery(env, cq.id, 'Esa joya ya no existe.'); return; }
-    const refrescar = async () => {
-      const q = await env.DB.prepare(`${SELECT_PRODUCTO} WHERE p.id = ?`).bind(id).first();
-      await tg.editMessageText(env, chat, msgId, await tarjetaProducto(env, q), botonesProducto(q));
+    const refrescar = async (botones) => {
+      const q = await leerProducto(env, id);
+      await tg.editMessageText(env, chat, msgId, await tarjetaProducto(env, q), botones ? botones(q) : botonesProducto(q));
     };
+    const modoEditar = async () => { const n = await contarFotos(env, id); await refrescar((q) => botonesEditar(q, n)); };
+    const ref = h(p.sku || p.nombre);
+
     if (accion === 'vis') {
       await env.DB.prepare('UPDATE productos SET activo = 1 - activo WHERE id = ?').bind(id).run();
       await refrescar();
@@ -474,10 +696,60 @@ async function manejarBoton(env, cq, origen) {
       await env.DB.prepare('UPDATE productos SET destacado = 1 - destacado WHERE id = ?').bind(id).run();
       await refrescar();
     } else if (accion === 'peso' || accion === 'prec') {
-      await fijarEspera(env, chat, accion === 'peso' ? 'peso' : 'precio', id);
-      await tg.sendMessage(env, chat, accion === 'peso'
-        ? `Peso nuevo para ${h(p.sku || p.nombre)} en gramos (p. ej. <code>3,4</code>):`
-        : `Precio por pieza para ${h(p.sku || p.nombre)} en pesos (p. ej. <code>250000</code>):`);
+      await pedir(env, chat, accion === 'peso' ? 'peso' : 'precio', id, accion === 'peso'
+        ? `Peso nuevo para ${ref} en gramos (p. ej. <code>3,4</code>):`
+        : `Precio por pieza para ${ref} en pesos (p. ej. <code>250000</code>). Ojo: deja de seguir el precio del oro.`);
+    } else if (accion === 'edit') {
+      await modoEditar();
+    } else if (accion === 'nom') {
+      await pedir(env, chat, 'pnom', id, `Nombre nuevo para ${ref}. Ahora: «${h(p.nombre)}»`);
+    } else if (accion === 'desc') {
+      await pedir(env, chat, 'pdesc', id, `Descripción para ${ref} (lo que se lee en la página de la joya). Escribe <code>-</code> para dejarla vacía.` +
+        (p.descripcion ? `\nAhora: «${h(String(p.descripcion).slice(0, 300))}»` : ''));
+    } else if (accion === 'med') {
+      await pedir(env, chat, 'pmed', id, `Medidas de ${ref}, p. ej. <code>50 cm</code> o <code>12 mm</code>. Escribe <code>-</code> para quitarlas.` +
+        (p.medidas ? `\nAhora: «${h(p.medidas)}»` : ''));
+    } else if (accion === 'dto') {
+      await pedir(env, chat, 'pdto', id, `Descuento para ${ref}: <code>10%</code>, un valor en pesos como <code>20000</code>, o <code>0</code> para quitarlo.`);
+    } else if (accion === 'oro') {
+      await env.DB.prepare("UPDATE productos SET tipo_oro = CASE tipo_oro WHEN 'italiano' THEN 'nacional' ELSE 'italiano' END WHERE id = ?").bind(id).run();
+      await modoEditar();
+      aviso = `Ahora es oro ${p.tipo_oro === 'italiano' ? 'nacional' : 'italiano'}.`;
+    } else if (accion === 'cat') {
+      const cats = (await env.DB.prepare('SELECT slug, nombre FROM categorias ORDER BY orden').all()).results;
+      await tg.editMessageReplyMarkup(env, chat, msgId, filasCategorias(cats, `p:cs:${id}`, `p:edit:${id}`));
+    } else if (accion === 'cs') {
+      await env.DB.prepare('UPDATE productos SET categoria_id = (SELECT id FROM categorias WHERE slug = ?) WHERE id = ?').bind(extra, id).run();
+      await modoEditar();
+      aviso = 'Categoría cambiada.';
+    } else if (accion === 'fotos') {
+      const imgs = (await env.DB.prepare('SELECT id, clave FROM producto_imagenes WHERE producto_id = ? ORDER BY orden, id').bind(id).all()).results;
+      if (imgs.length) {
+        await tg.sendMediaGroup(env, chat, imgs.slice(0, 10).map((f, i) => ({ type: 'photo', media: `${origen}/img/${f.clave}`, caption: `Foto ${i + 1}${i === 0 ? ' (portada)' : ''}` })));
+      }
+      await tg.sendMessage(env, chat, `${ref} tiene ${imgs.length} foto${imgs.length === 1 ? '' : 's'}. La primera es la portada.`, [
+        [{ text: 'Agregar fotos', callback_data: `p:fadd:${id}` }, { text: 'Reemplazar todas', callback_data: `p:frep:${id}` }],
+        ...(imgs.length > 1 ? [[{ text: 'Quitar una', callback_data: `p:fqui:${id}` }]] : []),
+      ]);
+    } else if (accion === 'fadd') {
+      await pedir(env, chat, 'pfadd', id, `Mándame las fotos nuevas de ${ref} (una o un álbum). Se agregan después de las que ya tiene.`);
+    } else if (accion === 'frep') {
+      const marca = (await env.DB.prepare('SELECT COALESCE(MAX(id), 0) m FROM producto_imagenes WHERE producto_id = ?').bind(id).first()).m;
+      await pedir(env, chat, 'pfrep', id, `Mándame las fotos nuevas de ${ref} (una o un álbum). Cuando lleguen, borro las anteriores; la primera que mandes queda de portada.`, { marca });
+    } else if (accion === 'fqui') {
+      const imgs = (await env.DB.prepare('SELECT id FROM producto_imagenes WHERE producto_id = ? ORDER BY orden, id').bind(id).all()).results;
+      const filas = [];
+      for (let i = 0; i < imgs.length; i += 4) filas.push(imgs.slice(i, i + 4).map((f, j) => ({ text: `Foto ${i + j + 1}`, callback_data: `p:fq:${id}:${f.id}` })));
+      await tg.editMessageText(env, chat, msgId, `¿Cuál foto de ${ref} quito? (los números son los de las fotos que te mandé)`, filas);
+    } else if (accion === 'fq') {
+      const n = await contarFotos(env, id);
+      if (n <= 1) aviso = 'Tiene que quedar al menos una foto.';
+      else {
+        const f = await env.DB.prepare('DELETE FROM producto_imagenes WHERE id = ? AND producto_id = ? RETURNING clave').bind(Number(extra), id).first();
+        if (f) await borrar(env, [f.clave]).catch(() => {});
+        await tg.editMessageText(env, chat, msgId, f ? `Quité la foto. ${ref} tiene ${n - 1}.` : 'Esa foto ya no estaba.');
+        aviso = 'Foto quitada.';
+      }
     } else if (accion === 'bor') {
       await tg.editMessageReplyMarkup(env, chat, msgId, [[{ text: 'Sí, borrar', callback_data: `p:borok:${id}` }, { text: 'Cancelar', callback_data: `p:cancel:${id}` }]]);
     } else if (accion === 'cancel') {
@@ -494,5 +766,5 @@ async function manejarBoton(env, cq, origen) {
     }
   }
   await tg.answerCallbackQuery(env, cq.id, aviso);
-  if (aviso && grupo === 'b' && aviso.startsWith('Falta')) await tg.sendMessage(env, chat, aviso);
+  if (aviso && aviso.startsWith('Falta')) await tg.sendMessage(env, chat, aviso);
 }

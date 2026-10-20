@@ -90,3 +90,9 @@ export async function avisarAdmins(env, fn) {
   }
   return n;
 }
+
+/** Álbum de fotos (2–10). Con una sola foto Telegram exige sendPhoto. */
+export const sendMediaGroup = (env, chat_id, media) =>
+  media.length === 1
+    ? llamar(env, 'sendPhoto', { chat_id, photo: media[0].media, caption: media[0].caption })
+    : llamar(env, 'sendMediaGroup', { chat_id, media });
