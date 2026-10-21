@@ -42,11 +42,11 @@ export const GRUPOS_FIGURA = [
 void FIGURAS_MOTIVO;
 
 export const PIEZAS = [
+  { tipo: 'nombre', nombre: 'Nombre', desc: 'Tu nombre en cursiva o de molde', mini: 'nombre', destacada: true },
   {
-    tipo: 'medalla', nombre: 'Medalla', desc: 'San Benito, vírgenes y santos en relieve', mini: 'medalla-san_benito', destacada: true,
+    tipo: 'medalla', nombre: 'Medalla', desc: 'San Benito, vírgenes y santos en relieve', mini: 'medalla-san_benito',
     sub: { clave: 'motivo', titulo: 'Elige la medalla', opciones: MOTIVOS_MEDALLA },
   },
-  { tipo: 'nombre', nombre: 'Nombre', desc: 'Tu nombre en cursiva o de molde', mini: 'nombre' },
   {
     tipo: 'cruz', nombre: 'Cruz', desc: 'Latina, griega, florenzada… con punto de luz o Cristo', mini: 'cruz-latina',
     sub: { clave: 'estilo', titulo: 'Elige el estilo de la cruz', opciones: ['latina', 'griega', 'redondeada', 'con_borde', 'florenzada', 'tau'] },

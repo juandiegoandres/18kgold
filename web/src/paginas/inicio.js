@@ -25,8 +25,8 @@ const PASOS_COMPRA = [
 
 // Piezas que muestra el visor del inicio (las mismas del diseñador, en la silueta gris).
 const VITRINA = [
-  { tipo: 'medalla', parametros: { motivo: 'san_benito', diametro: 18, borde: 'cordon', reverso: 'cruz_san_benito' }, nombre: 'Medalla de San Benito', mini: 'medalla-san_benito', url: 'disena/?tipo=medalla&motivo=san_benito' },
   { tipo: 'nombre', parametros: { texto: 'Valentina', fuente: 'script2', alto: 11 }, nombre: 'Dije con nombre', mini: 'nombre', url: 'disena/?tipo=nombre' },
+  { tipo: 'medalla', parametros: { motivo: 'san_benito', diametro: 18, borde: 'cordon', reverso: 'cruz_san_benito' }, nombre: 'Medalla de San Benito', mini: 'medalla-san_benito', url: 'disena/?tipo=medalla&motivo=san_benito' },
   { tipo: 'cruz', parametros: { estilo: 'latina', alto: 25, brazo: 3, punto_luz: true }, nombre: 'Cruz con punto de luz', mini: 'cruz-latina', url: 'disena/?tipo=cruz' },
   { tipo: 'motivo', parametros: { figura: 'arbol_vida', alto: 18 }, nombre: 'Árbol de la vida', mini: 'motivo-arbol_vida', url: 'disena/?tipo=motivo&figura=arbol_vida' },
 ];
@@ -49,8 +49,8 @@ function hero() {
         <ul class="hero-piezas" aria-label="Piezas que puedes diseñar" data-aparecer="hijos">${chips}</ul>
       </div>
       <figure class="hero-visual">
-        <a class="hero-lienzo hero-visor" href="${ruta(VITRINA[0].url)}" data-hero-visor aria-label="Abrir el diseñador con la ${VITRINA[0].nombre}">
-          <img class="hero-portada" src="${ruta('miniaturas/portada-san-benito.webp')}" alt="Medalla de San Benito en oro 18k puesta en una silueta gris, diseñada en 3D" width="1000" height="1000" fetchpriority="high">
+        <a class="hero-lienzo hero-visor" href="${ruta(VITRINA[0].url)}" data-hero-visor aria-label="Abrir el diseñador con: ${VITRINA[0].nombre}">
+          <img class="hero-portada" src="${ruta('miniaturas/portada-nombre.webp')}" alt="Cadena con el nombre Valentina en oro 18k puesta en una silueta gris, diseñada en 3D" width="1000" height="1000" fetchpriority="high">
           <span class="hero-escena" data-hero-escena aria-hidden="true"></span>
           <span class="hero-abrir rotulo">Abrir en el diseñador ${ico('flecha-der', { tam: 14 })}</span>
         </a>
@@ -71,8 +71,8 @@ function hero() {
 
 // Categorías del diseñador: cada tarjeta abre /disena/ con esa pieza lista para personalizar.
 const CATEGORIAS_DISENO = [
-  { href: 'disena/?tipo=nombre', mini: 'nombre', titulo: 'Nombre', desc: 'En cursiva o de molde, con tildes bien puestas.' },
-  { href: 'disena/?tipo=medalla&motivo=san_benito', mini: 'medalla-san_benito', titulo: 'Medalla San Benito', desc: 'En relieve, con la cruz de San Benito al reverso.', destacada: true },
+  { href: 'disena/?tipo=nombre', mini: 'nombre', titulo: 'Nombre', desc: 'En cursiva o de molde, con tildes bien puestas.', destacada: true },
+  { href: 'disena/?tipo=medalla&motivo=san_benito', mini: 'medalla-san_benito', titulo: 'Medalla San Benito', desc: 'En relieve, con la cruz de San Benito al reverso.' },
   { href: 'disena/?tipo=cruz', mini: 'cruz-florenzada', titulo: 'Cruces', desc: 'Latina, florenzada, tau… con Cristo o punto de luz.' },
   { href: 'disena/?tipo=motivo', mini: 'motivo-ojo_turco', titulo: 'Dijes clásicos', desc: 'Corazón, ojo turco, árbol de la vida, zodiaco.' },
   { href: 'disena/?tipo=anillo', mini: 'anillo', titulo: 'Anillos', desc: 'Argollas con grabado interior, en tu talla.' },
