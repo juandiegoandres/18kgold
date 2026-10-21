@@ -5,8 +5,19 @@ const API = 'https://api.telegram.org';
 
 export const telegramActivo = (env) => !!env.TELEGRAM_TOKEN;
 
-export const admins = (env) =>
-  String(env.TELEGRAM_ADMINS || '').split(',').map((s) => s.trim()).filter(Boolean);
+const lista = (s) => String(s || '').split(',').map((x) => x.trim()).filter(Boolean);
+
+/** Dueños (secreto TELEGRAM_ADMINS) + administradores agregados desde el bot (cargarAdmins). */
+export const admins = (env) => [...new Set([...lista(env.TELEGRAM_ADMINS), ...(env._adminsBot || [])])];
+
+/** Carga en env los administradores agregados desde el bot (ajustes.admins_bot). Llamar antes de admins(). */
+export async function cargarAdmins(env) {
+  const r = await env.DB.prepare("SELECT valor FROM ajustes WHERE clave = 'admins_bot'").first();
+  env._adminsBot = lista(r?.valor);
+  return env._adminsBot;
+}
+
+export const esDueno = (env, chatId) => lista(env.TELEGRAM_ADMINS).includes(String(chatId));
 
 export const esAdmin = (env, chatId) => admins(env).includes(String(chatId));
 
@@ -96,3 +107,5 @@ export const sendMediaGroup = (env, chat_id, media) =>
   media.length === 1
     ? llamar(env, 'sendPhoto', { chat_id, photo: media[0].media, caption: media[0].caption })
     : llamar(env, 'sendMediaGroup', { chat_id, media });
+
+export const getChat = (env, chat_id) => llamar(env, 'getChat', { chat_id });

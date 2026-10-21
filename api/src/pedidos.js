@@ -2,7 +2,7 @@
 import { json, leerJson, texto, ErrorHttp, ahoraIso, folio, dinero, waNormalizar, waLink, escaparHtml, numeroAjuste } from './util.js';
 import { leerAjustes, preciosGramo, calcularPrecio } from './precios.js';
 import { exigirLimite } from './codigos.js';
-import { avisarAdmins, sendMessage, telegramActivo, admins } from './telegram.js';
+import { avisarAdmins, cargarAdmins, sendMessage, telegramActivo, admins } from './telegram.js';
 
 export async function postPedido(request, env, ctx) {
   await exigirLimite(request, env, 'pedidos', 20, 3600);
@@ -83,6 +83,7 @@ export async function postPedido(request, env, ctx) {
   const numeroTienda = ajustes.whatsapp || '573178861724';
 
   let aviso;
+  await cargarAdmins(env);
   if (!telegramActivo(env) || !admins(env).length) {
     aviso = 'Pedido guardado. Telegram no está configurado: Carlos no recibió el aviso automático.';
   } else {

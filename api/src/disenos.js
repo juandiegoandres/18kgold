@@ -4,7 +4,7 @@ import { consumirCupo, devolverCupo, exigirLimite } from './codigos.js';
 import { TIPOS, normalizarParametros, normalizarMontaje, describirMontaje, describirDiseno, valorLegible } from './esquema-disenador.js';
 import { leerAjustes, cotizarDiseno, DENSIDAD_ORO_18K } from './precios.js';
 import { guardar, borrar } from './r2.js';
-import { avisarAdmins, sendPhoto, sendDocument, sendMessage, telegramActivo, admins } from './telegram.js';
+import { avisarAdmins, cargarAdmins, sendPhoto, sendDocument, sendMessage, telegramActivo, admins } from './telegram.js';
 
 const MAX_STL = 25 * 1024 * 1024; // 25 MB (medallas en relieve de 22–25 mm pasan de 10 MB)
 const MAX_PNG = 3 * 1024 * 1024;  // 3 MB
@@ -117,6 +117,7 @@ export async function postDiseno(request, env, ctx) {
   const pie = cabe ? resumen : cabecera.slice(0, 1024);
 
   let aviso;
+  await cargarAdmins(env);
   if (!telegramActivo(env) || !admins(env).length) {
     aviso = 'Diseño guardado. Telegram no está configurado: Carlos no recibió el aviso automático.';
     console.log('[disenos]', fol, 'guardado sin aviso a Telegram. Habría enviado:\n' + resumen);

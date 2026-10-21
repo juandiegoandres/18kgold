@@ -31,6 +31,7 @@ export const COMANDOS = [
   ['hechura', 'Ver o cambiar la hechura por gramo'],
   ['tejido', 'Ver o cambiar el valor del tejido en nylon'],
   ['anuncio', 'Franja de anuncio de la web'],
+  ['admins', 'Quién administra el bot'],
   ['cancelar', 'Cancelar lo que estaba haciendo'],
   ['ayuda', 'Aprender a usar el bot, tema por tema'],
   ['comandos', 'Lista corta de comandos'],
@@ -192,11 +193,13 @@ export async function procesarUpdate(env, u, origen) {
   const m = u.message;
   if (!m?.chat) return;
   const chat = String(m.chat.id);
+  await tg.cargarAdmins(env);
 
   if (!tg.esAdmin(env, chat)) {
     console.log(`[bot] mensaje de chat no autorizado ${chat} (${m.from?.first_name || ''} @${m.from?.username || ''})`);
     // Modo configuración: sin admins aún, le decimos a quien escriba su chat_id.
     if (!tg.admins(env).length) await tg.sendMessage(env, chat, `Tu chat_id es <code>${chat}</code>. Ponlo en TELEGRAM_ADMINS.`);
+    else if (m.chat.type === 'private') await pedirAcceso(env, chat, m.from);
     return;
   }
 
@@ -230,6 +233,18 @@ async function ejecutarComando(env, chat, cmd, args, partes, origen) {
 
     case 'comandos':
       return responder(AYUDA);
+
+    case 'admins': {
+      const filas = [];
+      const lineas = [];
+      for (const id of tg.admins(env)) {
+        const n = await nombreChat(env, id);
+        const dueno = tg.esDueno(env, id);
+        lineas.push(`• ${h(n)}${dueno ? ' (dueño)' : ''}${id === chat ? ' · tú' : ''}`);
+        if (!dueno && id !== chat) filas.push([{ text: `Quitar a ${n}`, callback_data: `u:quitar:${id}` }]);
+      }
+      return responder(`<b>Administradores del bot</b>\n${lineas.join('\n')}\n\nPara agregar a alguien: que le escriba al bot y te llega un botón para aceptarlo.`, filas.length ? filas : undefined);
+    }
 
     case 'cancelar':
       return responder('Listo, no estoy esperando nada.', MENU);
@@ -708,9 +723,36 @@ const filasCategorias = (cats, prefijo, volver) => {
   return filas;
 };
 
+// ---------------------------------------------------------------- administradores
+
+const nombreDe = (u) => [u?.first_name, u?.last_name].filter(Boolean).join(' ') || 'Sin nombre';
+async function nombreChat(env, id) {
+  const r = await tg.getChat(env, id);
+  return r.ok ? nombreDe(r.result) : id;
+}
+
+/** Alguien que no es admin le escribió al bot: se le avisa a los admins (una vez al día) con botón para aceptarlo. */
+async function pedirAcceso(env, chat, de) {
+  const clave = `bot_pide_acceso:${chat}`;
+  const previo = await env.DB.prepare('SELECT valor FROM ajustes WHERE clave = ?').bind(clave).first();
+  if (previo && Date.now() - Number(previo.valor) < 86400000) return;
+  await fijarAjuste(env, clave, String(Date.now()));
+  const quien = `${h(nombreDe(de))}${de?.username ? ` (@${h(de.username)})` : ''}`;
+  await tg.sendMessage(env, chat, 'Hola. Este bot administra la tienda 18gold KPrada. Ya le avisé al administrador para que te dé acceso; te escribo aquí cuando quedes activo.');
+  await tg.avisarAdmins(env, async (admin) => (await tg.sendMessage(env, admin,
+    `<b>${quien}</b> le escribió al bot y no es administrador.\n¿Le doy acceso para manejar la tienda (precios, joyas, códigos) y recibir los pedidos y diseños?`,
+    [[{ text: 'Hacer administrador', callback_data: `u:si:${chat}` }, { text: 'Ignorar', callback_data: `u:no:${chat}` }]])).ok);
+}
+
+async function guardarAdminsBot(env, ids) {
+  await fijarAjuste(env, 'admins_bot', [...new Set(ids)].join(','));
+  return tg.cargarAdmins(env);
+}
+
 // ---------------------------------------------------------------- botones (callback_query)
 
 async function manejarBoton(env, cq, origen) {
+  await tg.cargarAdmins(env);
   const chat = String(cq.message?.chat?.id ?? cq.from?.id);
   const msgId = cq.message?.message_id;
   if (!tg.esAdmin(env, chat) && !tg.esAdmin(env, cq.from?.id)) return tg.answerCallbackQuery(env, cq.id);
@@ -738,6 +780,24 @@ async function manejarBoton(env, cq, origen) {
       await tg.editMessageText(env, chat, msgId, 'Listo, quité el anuncio de la web.');
     } else if (accion === 'ayuda') await tg.sendMessage(env, chat, TEXTO_AYUDA, botonesAyuda());
     else if (['codigos', 'pedidos', 'disenos'].includes(accion)) await ejecutarComando(env, chat, accion, '', [], origen);
+  } else if (grupo === 'u') {
+    const otro = idTxt;
+    const n = await nombreChat(env, otro);
+    if (accion === 'si') {
+      if (!tg.esAdmin(env, otro)) await guardarAdminsBot(env, [...(env._adminsBot || []), otro]);
+      await tg.editMessageText(env, chat, msgId, `Listo: <b>${h(n)}</b> ya es administrador del bot.`);
+      await tg.sendMessage(env, otro, `<b>¡Listo, ${h(n)}!</b> Ya puedes administrar la tienda desde aquí. Te van a llegar los pedidos y los diseños de los clientes.\n\nToca /menu para empezar o /ayuda para aprender paso a paso.`, MENU);
+      aviso = 'Agregado.';
+    } else if (accion === 'no') {
+      await tg.editMessageText(env, chat, msgId, `Ignoré a ${h(n)}.`);
+    } else if (accion === 'quitar') {
+      if (tg.esDueno(env, otro)) aviso = 'A un dueño no se le puede quitar desde aquí.';
+      else {
+        await guardarAdminsBot(env, (env._adminsBot || []).filter((x) => x !== otro));
+        await tg.editMessageText(env, chat, msgId, `Quité a ${h(n)} de administradores.`);
+        aviso = 'Quitado.';
+      }
+    }
   } else if (grupo === 'd') {
     // Reenvía la vista y el STL de un diseño guardado (p. ej. uno que llegó antes de que el chat fuera admin).
     const d = await env.DB.prepare('SELECT * FROM disenos WHERE id = ?').bind(id).first();

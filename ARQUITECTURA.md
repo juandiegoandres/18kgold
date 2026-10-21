@@ -54,7 +54,10 @@ imagenes:[url absoluta], creado }`. Solo `activo=1`.
 
 ## 3. Bot de Telegram (lo usa Carlos para administrar todo)
 
-Solo responde a los chat_id en el secreto `TELEGRAM_ADMINS` (lista separada por comas).
+Solo responde a los administradores: los dueños en el secreto `TELEGRAM_ADMINS` (lista separada por comas)
+más los agregados desde el bot (`ajustes.admins_bot`). Si alguien más le escribe en privado, el bot les avisa a
+los admins (una vez al día por chat) con botones `Hacer administrador` · `Ignorar`; `/admins` lista y permite
+quitar a los agregados (a los dueños no). Pedidos y diseños se avisan a todos.
 Comandos (en español, con menú `setMyCommands`):
 
 - `/menu` (también `/start`) — botones: Precio del oro · Subir joya · Buscar y editar joya · Crear código ·
